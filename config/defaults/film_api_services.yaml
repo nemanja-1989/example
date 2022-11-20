@@ -1,0 +1,21 @@
+services:
+    _defaults:
+       autowire: true
+       autoconfigure: true
+
+    Loopia\App\Controllers\:
+        resource: '../../src/Loopia/App/Controllers/'
+        public: true
+        
+    application:
+        class: Loopia\App\Core\FilmApiHttpApplication
+        public: true
+
+    Loopia\App\Api\FilmApiDataLoader:
+
+    Loopia\App\Core\DispatcherFactory:
+        arguments:
+            $routes: '%routes%'
+
+    FastRoute\Dispatcher:
+        factory: ['@Loopia\App\Core\DispatcherFactory', 'createDispatcher']

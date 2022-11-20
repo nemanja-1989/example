@@ -1,0 +1,21 @@
+services:
+    _defaults:
+       autowire: true
+       autoconfigure: true
+
+    Loopia\App\Core\HttpApplication:
+        alias: application
+
+    routeparser:
+        class: FastRoute\RouteParser\Std
+
+    datagenerator:
+        class: FastRoute\DataGenerator\GroupCountBased
+
+    FastRoute\RouteCollector:
+        arguments:
+            $routeParser: '@routeparser'
+            $dataGenerator: '@datagenerator'
+
+
+

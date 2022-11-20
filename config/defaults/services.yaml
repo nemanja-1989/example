@@ -1,0 +1,31 @@
+parameters:
+    logger.filelog.path: true
+
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Psr\Log\LoggerInterface:
+        alias: logger
+
+    Monolog\Handler\StreamHandler:
+        arguments:
+            $stream: '/tmp/logger.log'
+
+    Loopia\App\Api\Credentials:
+        arguments:
+            $username: 'your-secret-username'
+            $password: 'your-secret-password'
+
+    Loopia\App\Api\Client:
+        arguments:
+            $endpoint: 'http://filmapi.loopiarnd.com'
+
+    logger:
+        class: Monolog\Logger
+        arguments:
+            - 'film-api'
+            -
+               - '@Monolog\Handler\StreamHandler'

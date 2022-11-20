@@ -1,0 +1,28 @@
+<div class="content">
+<?php if (!$this->items): ?>
+		<b>No item(s) found!</b>
+	<?php else: ?>
+		<?php foreach ($this->items as $item): ?>
+			<div class="item">
+				<dl>
+					<dt>ID: <dd><?php echo $item['id'] ?>
+					<dt>Title: <dd><?php echo $item['title'] ?>
+					<dt>Synopsis: <dd><?php echo $item['synopsis'] ?>
+				</dl>
+			</div>
+		<?php endforeach; ?>
+	<?php endif ?>
+	<?php if (!count($this->items)): ?>
+		<b>No item(s) found!</b>
+	<?php else: ?>
+		<?php foreach ($this->items as $item): ?>
+			<div class="item">
+				<dl>
+					<dt>ID: <dd><?php echo $item['id'] ?>
+					<dt>Title: <dd><?php echo $item['title'] ?>
+					<dt>Synopsis: <dd><?php echo $item['synopsis'] ?>
+				</dl>
+			</div>
+		<?php endforeach; ?>
+	<?php endif ?>
+</div>

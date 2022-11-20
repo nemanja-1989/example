@@ -1,0 +1,6 @@
+[20-Nov-2022 23:38:09 Europe/Berlin] PHP Fatal error:  Uncaught Loopia\App\Error\NotFoundException in /var/www/html/loopiartapp/src/Loopia/App/Core/HttpApplication.php:44
+Stack trace:
+#0 /var/www/html/loopiartapp/src/Loopia/App/Core/FilmApiHttpApplication.php(12): Loopia\App\Core\HttpApplication->run()
+#1 /var/www/html/loopiartapp/public/index.php(8): Loopia\App\Core\FilmApiHttpApplication->run()
+#2 {main}
+  thrown in /var/www/html/loopiartapp/src/Loopia/App/Core/HttpApplication.php on line 44
