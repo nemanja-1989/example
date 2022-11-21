@@ -18,13 +18,10 @@ class FilmApiDataLoader extends Redis {
 	}
 
 	public function loadData() {
-		/* @var $response ResponseInterface */
-		$response = $this->filmApiClient->send($this->filmApiClient->getRequest('items'));
-		$data =  $response->getBody()->getContents();
-		$data = $this->setCache('/v1/items', $data);
 		$data = $this->getCache('/v1/items');
-		foreach(json_decode($data, TRUE) as $item) {
-			$this->setCache('/v1/item/' . $item['id'], json_encode($item));
+		if(!isset($data)) {
+			$response = $this->filmApiClient->send($this->filmApiClient->getRequest('items'));
+			$data =  $response->getBody()->getContents();
 		}
 		return new ArrayCollection(json_decode($data, TRUE));
 	}
