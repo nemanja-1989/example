@@ -1,8 +1,10 @@
-<div class="content">
+<div class="content"> 
+<?php var_dump($this->items); exit; ?>
 	<?php if (!count($this->items)): ?>
 		<b>No item(s) found!</b>
 	<?php else: ?>
 		<?php foreach ($this->items as $item): ?>
+			<?php var_dump($item); exit; ?>
 			<div class="item">
 				<dl>
 					<dt>ID: <dd><?php echo $item['id'] ?>

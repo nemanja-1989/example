@@ -17,8 +17,6 @@ class FilmDetails extends BaseController {
 	}
 
 	public function __invoke(int $id) {
-		var_dump($this->loader->loadItemData($id));
-		exit;
 		return $this->render('index.phtml', [
 			'items' => $this->loader->loadItemData($id),
 		]);
