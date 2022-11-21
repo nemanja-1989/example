@@ -14,14 +14,8 @@ services:
         arguments:
             $stream: '/tmp/logger.log'
 
-    Loopia\App\Api\Credentials:
-        arguments:
-            $username: 'your-secret-username'
-            $password: 'your-secret-password'
 
     Loopia\App\Api\Client:
-        arguments:
-            $endpoint: 'http://filmapi.loopiarnd.com'
 
     logger:
         class: Monolog\Logger

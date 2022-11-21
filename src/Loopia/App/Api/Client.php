@@ -6,22 +6,15 @@
 
 namespace Loopia\App\Api;
 
-use Closure;
-use Exception;
 use GuzzleHttp\Psr7\Request;
-use Loopia\App\Interface\CredentialsConsumerInterface;
 use Loopia\App\Services\HttpService;
 use Loopia\App\Constants\Constants;
 
 class Client {
 
-	protected Credentials $credentials;
-
-	protected string $endpoint;
-
 	protected HttpService $client;
 
-	public function __construct(Credentials $credentials, string $endpoint) {
+	public function __construct() {
 		$this->client = new HttpService;
 	}
 
