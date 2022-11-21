@@ -27,14 +27,15 @@ class FilmApiDataLoader {
 		$data = $this->redisService->getService()->set('/v1/items', $data);
 		$data = $this->redisService->getService()->get('/v1/items');
 		foreach(json_decode($data, TRUE) as $item) {
-			$this->redisService->getService()->set('/v1/item/' . $item['id'], $data);
+			$this->redisService->getService()->set('/v1/item/' . $item['id'], json_encode($item));
 		}
 		return new ArrayCollection(json_decode($data, TRUE));
 	}
 
 	public function loadItemData(int $id) {
 		$data = $this->redisService->getService()->get('/v1/item/' . $id);
-		return new ArrayCollection(json_decode($data, TRUE));
+		$data = json_decode($data, true);
+		return new ArrayCollection($data);
 	}
 
 }
