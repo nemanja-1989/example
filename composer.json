@@ -9,7 +9,8 @@
         "symfony/dependency-injection": "^5.4",
         "symfony/config": "^5.4",
         "symfony/yaml": "^5.4",
-        "symfony/console": "^5.4"
+        "symfony/console": "^5.4",
+        "predis/predis": "^2.0"
     },
     "license": "proprietary",
     "authors": [
