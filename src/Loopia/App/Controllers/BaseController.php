@@ -10,9 +10,9 @@ abstract class BaseController {
 
 	protected CONST TEMPLATE_PATH = __DIR__ . '/../../../../template';
 
-	protected function renderBody(string $content) {
+	protected function renderBody(string $content, string $title) {
 		$templatePath = self::TEMPLATE_PATH . DIRECTORY_SEPARATOR . '_body.phtml';
-		return (new Template($templatePath, ['content' => $content]))->render();
+		return (new Template($templatePath, ['content' => $content, 'title' => $title]))->render();
 	}
 
 	protected function render(string $path, array $data = []) {
@@ -25,8 +25,8 @@ abstract class BaseController {
 		if (!\is_readable($templatePath)) {
 			throw new TemplatePathNotReadableException($templatePath);
 		}
-
-		return $this->renderBody((new Template($templatePath, $data))->render());
+		
+		return $this->renderBody((new Template($templatePath, $data))->render(), $data['items']['title'] ?? "Movies");
 	}
 
 }
