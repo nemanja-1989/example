@@ -26,6 +26,10 @@ class Template {
 	}
 
 	public function render() { //preimenuj funkciju, dodaj još nešto, za merge conlict
+
+		/**
+		 * Nisam razumeo zasto da je preimenujem?!
+		 */
 		ob_start();
 		include $this->templatePath;
 		return ob_get_clean();
