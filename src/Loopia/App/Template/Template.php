@@ -30,6 +30,4 @@ class Template {
 		include $this->templatePath;
 		return ob_get_clean();
 	}
-
-
 }

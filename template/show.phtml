@@ -1,0 +1,13 @@
+<div class="content"> 
+	<?php if (!count($this->items)): ?>
+		<b>No item(s) found!</b>
+	<?php else: ?>
+			<div class="item">
+				<dl>
+					<dt>ID: <dd><?php echo $this->items['id'] ?>
+					<dt>Title: <dd><?php echo $this->items['title'] ?>
+					<dt>Synopsis: <dd><?php echo $this->items['synopsis'] ?>
+				</dl>
+			</div>
+		<?php endif ?>
+</div>

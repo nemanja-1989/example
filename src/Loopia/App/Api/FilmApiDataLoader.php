@@ -35,7 +35,7 @@ class FilmApiDataLoader {
 	public function loadItemData(int $id) {
 		$data = $this->redisService->getService()->get('/v1/item/' . $id);
 		$data = json_decode($data, true);
-		return new ArrayCollection($data);
+		return $data;
 	}
 
 }

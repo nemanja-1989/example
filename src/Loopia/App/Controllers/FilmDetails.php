@@ -17,7 +17,7 @@ class FilmDetails extends BaseController {
 	}
 
 	public function __invoke(int $id) {
-		return $this->render('index.phtml', [
+		return $this->render('show.phtml', [
 			'items' => $this->loader->loadItemData($id),
 		]);
 	}
