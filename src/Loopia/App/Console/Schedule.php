@@ -11,7 +11,12 @@ class Schedule {
     }
 
     public function run() {
-        $this->cache->redisItems();
-        $this->cache->redisSingleItem();
+        try{
+            $this->cache->redisItems();
+            $this->cache->redisSingleItem();
+        }catch(\Exception $e) {
+            return $e->getMessage();
+        }
+        
     }
 }

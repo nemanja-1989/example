@@ -16,19 +16,27 @@ class FilmApiDataLoader extends Redis {
 	}
 
 	public function loadData() {
-		$data = $this->getCache('/v1/items');
-		if(!$data)
-			$data = $this->getItemsRequest(); 	
-		return new ArrayCollection(json_decode($data, TRUE));
+		try{
+			$data = $this->getCache('/v1/items');
+			if(!$data)
+				$data = $this->getItemsRequest(); 	
+			return new ArrayCollection(json_decode($data, TRUE));
+		}catch(\Exception $e) {
+			return $e->getMessage();
+		}
 	}
 
 	public function loadItemData(int $id) {
-		$data = $this->getCache('/v1/item/' . $id);
-		$data = json_decode($data, true);
-		return $data;
+		try{
+			$data = json_decode($this->getCache('/v1/item/' . $id), TRUE);
+			return $data;
+		}catch(\Exception $e) {
+			return $e->getMessage();
+		}
 	}
 
 	public function getItemsRequest() {
-		return $this->filmApiClient->send($this->filmApiClient->getRequest('items'))->getBody()->getContents();
+		return $this->filmApiClient->send($this->filmApiClient->getRequest('items'))->getBody()->getContents()??
+        throw new \Exception("Get items crashed!");
 	}
 }
