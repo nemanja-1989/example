@@ -9,9 +9,9 @@ namespace Loopia\App\Api;
 use Doctrine\Common\Collections\ArrayCollection;
 use \Loopia\App\Api\Redis;
 
-class FilmApiDataLoader extends Redis {
+class FilmApiDataLoader extends Redis{
 
-	protected Client $filmApiClient;
+	public Client $filmApiClient;
 
 	public function __construct(Client $filmApiClient) {
 		$this->filmApiClient = $filmApiClient;
