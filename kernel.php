@@ -7,9 +7,20 @@ use Loopia\App\Api\FilmApiDataCache;
 use Loopia\App\Console\Schedule;
 use Loopia\App\Api\FilmApiDataLoader;
 
-//dependencies
+/**
+ * service dependencies
+ */
 $client = new Client;
+/**
+ * classes dependencies
+ */
+
+ //ITEMS
 $loader = new FilmApiDataLoader($client);
 $prepareCacheItems = new FilmApiDataCache($loader);
+
+/**
+ * crontab
+ */
 $schedule = new Schedule($prepareCacheItems);
 $schedule->run();

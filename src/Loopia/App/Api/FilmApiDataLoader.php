@@ -11,9 +11,7 @@ use \Loopia\App\Api\Redis;
 
 class FilmApiDataLoader extends Redis {
 
-	public Client $filmApiClient;
-
-	public function __construct(Client $filmApiClient) {
+	public function __construct(protected Client $filmApiClient) {
 		$this->filmApiClient = $filmApiClient;
 	}
 
