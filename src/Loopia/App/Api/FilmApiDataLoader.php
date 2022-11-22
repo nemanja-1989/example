@@ -18,11 +18,9 @@ class FilmApiDataLoader extends Redis {
 	}
 
 	public function loadData() {
-		/* @var $response ResponseInterface */
 		$data = $this->getCache('/v1/items');
-		if(!$data){
-			$data = $this->getItemsRequest();
-		} 	
+		if(!$data)
+			$data = $this->getItemsRequest(); 	
 		return new ArrayCollection(json_decode($data, TRUE));
 	}
 
