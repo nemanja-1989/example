@@ -2,15 +2,16 @@
 
 namespace Loopia\App\Console;
 
-use Loopia\App\Api\FilmApiDataLoader;
+use Loopia\App\Api\FilmApiDataCache;
 
 class Schedule {
 
-    public function __construct(protected FilmApiDataLoader $loader) {
-        $this->loader = $loader;
+    public function __construct(protected FilmApiDataCache $cache) {
+        $this->cache = $cache;
     }
 
     public function run() {
-        $this->loader->redisItems();
+        $this->cache->redisItems();
+        $this->cache->redisSingleItem();
     }
 }

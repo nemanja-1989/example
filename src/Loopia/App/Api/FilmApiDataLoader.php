@@ -9,7 +9,7 @@ namespace Loopia\App\Api;
 use Doctrine\Common\Collections\ArrayCollection;
 use \Loopia\App\Api\Redis;
 
-class FilmApiDataLoader extends Redis{
+class FilmApiDataLoader extends Redis {
 
 	public Client $filmApiClient;
 
@@ -20,20 +20,10 @@ class FilmApiDataLoader extends Redis{
 	public function loadData() {
 		/* @var $response ResponseInterface */
 		$data = $this->getCache('/v1/items');
-		if($data) 
-			$data = $this->cacheSingleItem($data);
-		return new ArrayCollection(json_decode($data, TRUE));
-	}
-
-	private function cacheSingleItem($data) {
-		if($data) {
-			foreach(json_decode($data, TRUE) as $item) {
-				$this->setCache('/v1/item/' . $item['id'], json_encode($item));
-			}
-		}else {
+		if(!$data){
 			$data = $this->getItemsRequest();
-		}
-		return $data;
+		} 	
+		return new ArrayCollection(json_decode($data, TRUE));
 	}
 
 	public function loadItemData(int $id) {
@@ -42,12 +32,7 @@ class FilmApiDataLoader extends Redis{
 		return $data;
 	}
 
-	public function redisItems() {
-		$this->setCache('/v1/items', $this->getItemsRequest());
-	}
-
 	public function getItemsRequest() {
 		return $this->filmApiClient->send($this->filmApiClient->getRequest('items'))->getBody()->getContents();
 	}
-
 }
