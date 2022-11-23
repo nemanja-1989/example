@@ -10,9 +10,7 @@ use Psr\Log\LoggerInterface;
 
 abstract class Application {
 
-	protected $logger;
-
-	public function __construct(LoggerInterface $logger) {
+	public function __construct(protected LoggerInterface $logger) {
 		$this->logger = $logger;
 	}
 

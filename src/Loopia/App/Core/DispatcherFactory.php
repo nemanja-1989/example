@@ -11,10 +11,7 @@ use FastRoute\RouteCollector;
 
 class DispatcherFactory {
 
-	protected $routeCollector;
-	protected $routes;
-
-	public function __construct(RouteCollector $routeCollector, array $routes) {
+	public function __construct(protected RouteCollector $routeCollector, protected array $routes) {
 		$this->routeCollector = $routeCollector;
 		$this->routes = $routes;
 	}

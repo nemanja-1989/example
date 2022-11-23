@@ -10,9 +10,7 @@ use Loopia\App\Api\FilmApiDataLoader;
 
 class Homepage extends BaseController {
 
-	protected FilmApiDataLoader $loader;
-
-	public function __construct(FilmApiDataLoader $loader) {
+	public function __construct(protected FilmApiDataLoader $loader) {
 		$this->loader = $loader;
 	}
 

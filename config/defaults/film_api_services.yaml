@@ -12,9 +12,6 @@ services:
         public: true
 
     Loopia\App\Api\FilmApiDataLoader:
-        # arguments:
-        #     $filmApiClient: '@Loopia\App\Api\Client'
-        #     $redis: '@Loopia\App\Api\Client'
 
     Loopia\App\Core\DispatcherFactory:
         arguments:
