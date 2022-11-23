@@ -1,12 +1,32 @@
 Simple Application for candidate testing
 ========================================
 
-Concepts
---------
+ ## ENVIRONMENT:
+- sudo apt install mysql-server
+- sudo apt install apache2
+- sudo apt install php8.1
 
- - Dependency injection
- - Design Patterns
- - Anti-patterns
- - HTTP Request
- - Application design
- - External API
+## Commands:
+
+# With cron
+- composer install
+- sudo apt install redis-server
+- crontab -e
+- * * * * * php /path-to-your-project/kernel.php >/dev/null 2>&1
+- systemctl start redis
+- systemctl start cron
+
+# Without cron
+- just start /kernel.php to execute cron script object
+
+# Routes
+- /v1/items
+- /v1/item
+
+# Recommended testing for app status
+- before start and check routes, open a terminal,
+execute command redis cli FLUSHALL
+- after that go to routes an check network F12, you will se request response in miliseconds for /v1/items route,
+second time after you checked response, now you will see so much lower time response, because in second http request we get from redis cache...
+
+# ENJOY
