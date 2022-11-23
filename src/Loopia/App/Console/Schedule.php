@@ -2,8 +2,6 @@
 
 namespace Loopia\App\Console;
 
-require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
-
 use Loopia\App\Interface\RedisDependency;
 
 class Schedule extends ScheduleDependency {
