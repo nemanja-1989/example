@@ -2,21 +2,20 @@
 
 namespace Loopia\App\Console;
 
-use Loopia\App\Api\FilmApiDataCache;
+require_once dirname(__DIR__) . '/../../../vendor/autoload.php';
 
-class Schedule {
+use Loopia\App\Interface\RedisDependency;
 
-    public function __construct(protected FilmApiDataCache $cache) {
-        $this->cache = $cache;
+class Schedule extends ScheduleDependency {
+
+    private function run(RedisDependency $redisDependency) {
+        $redisDependency->redisDependencyClassesMethodsForCaching();
     }
 
-    public function run() {
-        try{
-            $this->cache->redisItems();
-            $this->cache->redisSingleItem();
-        }catch(\Exception $e) {
-            return $e->getMessage();
+    public function exe() {
+        $classesForSchedule = $this->dependencyClassesForSchedule();
+        foreach($classesForSchedule as $class) {
+            $this->run($class);
         }
-        
     }
 }
