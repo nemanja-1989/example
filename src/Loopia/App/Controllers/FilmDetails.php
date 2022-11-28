@@ -20,7 +20,7 @@ class FilmDetails extends BaseController {
 
 	public function __invoke(int $id) {
 		return $this->render('show.phtml', [
-			'items' => $this->loader->loadItemData($id, new RedisService, new Redis),
+			'items' => $this->loader->getById($id),
 		]);
 	}
 }

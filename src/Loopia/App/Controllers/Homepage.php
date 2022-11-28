@@ -18,7 +18,7 @@ class Homepage extends BaseController {
 
 	public function __invoke() {
 		return $this->render('index.phtml', [
-			'items' => $this->loader->loadData(new RedisService(), new Redis()),
+			'items' => $this->loader->getResponse(),
 		]);
 	}
 }

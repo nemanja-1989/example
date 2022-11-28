@@ -23,8 +23,13 @@ class Client
         ]);
     }
 
-    public function send(Request $request, HttpService $httpService): \GuzzleHttp\Psr7\Response|\ErrorException
+    public function send(Request $request, HttpService $httpService)
     {
-        return $httpService->getService('http://filmapi.loopiarnd.com/items')->send($request) ?? throw new \ErrorException;
+        return $this->getResponse($request, $httpService);
+    }
+
+    private function getResponse(Request $request, HttpService $httpService): \GuzzleHttp\Psr7\Response|\ErrorException
+    {
+          return $httpService->getService('http://filmapi.loopiarnd.com/items')->send($request) ?? throw new \ErrorException;
     }
 }

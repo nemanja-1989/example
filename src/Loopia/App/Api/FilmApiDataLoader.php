@@ -7,11 +7,13 @@
 namespace Loopia\App\Api;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use \Loopia\App\Api\Redis;
+use Loopia\App\Interface\ResponseInterface;
+use Loopia\App\Interface\ResponseSingleInterface;
 use Loopia\App\Services\HttpService;
 use Loopia\App\Services\RedisService;
 
-class FilmApiDataLoader
+
+class FilmApiDataLoader implements ResponseInterface, ResponseSingleInterface
 {
 
     public function __construct(protected Client $filmApiClient)
@@ -19,7 +21,17 @@ class FilmApiDataLoader
         $this->filmApiClient = $filmApiClient;
     }
 
-    public function loadData(RedisService $redisService, Redis $redis)
+    public function getResponse()
+    {
+        return $this->loadData(new RedisService, new Redis);
+    }
+
+    public function getById($id)
+    {
+        return $this->loadItemData($id, new RedisService, new Redis);
+    }
+
+    private function loadData(RedisService $redisService, Redis $redis)
     {
         try {
             if ($redisService->getService()->exists('/v1/items') === 1) {
@@ -33,7 +45,7 @@ class FilmApiDataLoader
         }
     }
 
-    public function loadItemData(int $id, RedisService $redisService, Redis $redis)
+    private function loadItemData(int $id, RedisService $redisService, Redis $redis)
     {
         try {
             if ($redisService->getService()->exists('/v1/item/' . $id) === 1) {
