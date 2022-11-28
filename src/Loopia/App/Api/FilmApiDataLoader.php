@@ -21,12 +21,12 @@ class FilmApiDataLoader implements ResponseInterface, ResponseSingleInterface
         $this->filmApiClient = $filmApiClient;
     }
 
-    public function getResponse()
+    public function getResponse() :ArrayCollection|string
     {
         return $this->loadData(new RedisService, new Redis);
     }
 
-    public function getById($id)
+    public function getById($id) :ArrayCollection|string
     {
         return $this->loadItemData($id, new RedisService, new Redis);
     }

@@ -9,13 +9,11 @@ class Redis
 
     public function setCache(RedisService $redisService, string $name, string $data)
     {
-            $redisService->getService()->set($name, $data) ??
-            throw new \Exception("Cash items broken!");
+        $redisService->getService()->set($name, $data);
     }
 
-    public function getCache(RedisService $redisService, $name): string|\Exception
+    public function getCache(RedisService $redisService, $name): string
     {
-        return $redisService->getService()->get($name) ??
-            throw new \Exception("Cash single item broken!");
+        return $redisService->getService()->get($name);
     }
 }
