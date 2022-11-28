@@ -35,7 +35,7 @@ use Loopia\App\Services\RedisService;
         }
     }
 
-    public function loadItemData(int $id) :ArrayCollection|string
+     public function loadItemData(int $id) :ArrayCollection|string
     {
         try {
             if ($this->redisService->getService()->exists('/v1/item/' . $id) === 1) {
@@ -49,12 +49,12 @@ use Loopia\App\Services\RedisService;
         }
     }
 
-    public function getItemsRequest(): string
+     private function getItemsRequest(): string
     {
         return $this->filmApiClient->send($this->filmApiClient->getRequest('items'), $this->httpService)->getBody()->getContents();
     }
 
-    public function getSingleItemsRequest($id): string
+    private function getSingleItemsRequest($id): string
     {
         return $this->filmApiClient->send($this->filmApiClient->getRequest('items/' . $id), $this->httpService)->getBody()->getContents();
     }
