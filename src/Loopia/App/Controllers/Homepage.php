@@ -7,6 +7,7 @@
 namespace Loopia\App\Controllers;
 
 use Loopia\App\Api\FilmApiDataLoader;
+use Loopia\App\Services\RedisService;
 
 class Homepage extends BaseController {
 
@@ -16,7 +17,7 @@ class Homepage extends BaseController {
 
 	public function __invoke() {
 		return $this->render('index.phtml', [
-			'items' => $this->loader->loadData(),
+			'items' => $this->loader->loadData(new RedisService()),
 		]);
 	}
 }

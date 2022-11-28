@@ -7,10 +7,10 @@ parameters:
             controller: '@Loopia\App\Controllers\RedirectToVersion'
         homepage:
             method: GET
-            path: '/v1/'
+            path: '/public/v1/'
             controller: '@Loopia\App\Controllers\Homepage'
         details:
             method: GET
-            path: '/v1/item/{id:\d+}'
+            path: '/public/v1/item/{id:\d+}'
             controller: '@Loopia\App\Controllers\FilmDetails'
 

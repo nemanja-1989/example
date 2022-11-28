@@ -41,7 +41,7 @@ abstract class HttpApplication extends Application {
 		switch ($routeInfo[0]) {
 			case Dispatcher::NOT_FOUND:
 				$this->logger->info('Route not found', ['uri' => $uri]);
-				throw new NotFoundException();
+				throw new NotFoundException($uri);
 			case Dispatcher::METHOD_NOT_ALLOWED:
 				$this->logger->info('Method not allowed', ['method' => $httpMethod, 'uri' => $uri]);
 				throw new MethodNotAllowedException($httpMethod);
