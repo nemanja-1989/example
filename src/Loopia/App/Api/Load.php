@@ -23,30 +23,15 @@ use Loopia\App\Services\RedisService;
 
     public function loadData() :ArrayCollection|string
     {
-        try {
-            if ($this->redisService->getService()->exists('/v1/items') === 1) {
-                $data = $this->redis->getCache($this->redisService, '/v1/items');
-            } else {
-                $data = $this->getItemsRequest();
-            }
-            return new ArrayCollection(json_decode($data, TRUE));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        $data = $this->redis->getCache($this->redisService, '/v1/items') ?? $this->getItemsRequest();
+        return new ArrayCollection(json_decode($data, TRUE));
     }
 
      public function loadItemData(int $id) :ArrayCollection|string
-    {
-        try {
-            if ($this->redisService->getService()->exists('/v1/item/' . $id) === 1) {
-                $data = $this->redis->getCache($this->redisService, '/v1/item/' . $id);
-            } else {
-                $data = $this->getSingleItemsRequest($id);
-            }
-            return new ArrayCollection(json_decode($data, TRUE));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+    {   
+        $data = $this->redis->getCache($this->redisService, '/v1/item/' . $id) ?? $this->getSingleItemsRequest($id);
+        return new ArrayCollection(json_decode($data, TRUE));
+            
     }
 
      private function getItemsRequest(): string

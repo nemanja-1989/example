@@ -17,18 +17,18 @@ class FilmApiDataCache implements RedisDependency
         $this->redis = $redis;
     }
 
-    public function redisDependencyClassesMethodsForCaching()
+    public function redisDependencyClassesMethodsForCaching() :void
     {
         $this->redisItems();
         $this->redisSingleItem();
     }
 
-    private function redisItems()
+    private function redisItems() :void
     {
         $this->redis->setCache($this->redisService, '/v1/items', $this->loader->publicItemsRequest());
     }
 
-    private function redisSingleItem()
+    private function redisSingleItem() :void
     {
         if ($this->redis->getCache($this->redisService, '/v1/items')) {
             foreach (json_decode($this->redis->getCache($this->redisService, '/v1/items'), TRUE) as $item) {

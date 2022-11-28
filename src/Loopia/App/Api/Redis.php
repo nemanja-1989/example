@@ -12,7 +12,7 @@ class Redis
         $redisService->getService()->set($name, $data);
     }
 
-    public function getCache(RedisService $redisService, $name): string
+    public function getCache(RedisService $redisService, $name): string|null
     {
         return $redisService->getService()->get($name);
     }
