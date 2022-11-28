@@ -9,8 +9,6 @@ namespace Loopia\App\Api;
 use Doctrine\Common\Collections\ArrayCollection;
 use Loopia\App\Interface\ResponseInterface;
 use Loopia\App\Interface\ResponseSingleInterface;
-use Loopia\App\Services\HttpService;
-use Loopia\App\Services\RedisService;
 
 
 class FilmApiDataLoader implements ResponseInterface, ResponseSingleInterface

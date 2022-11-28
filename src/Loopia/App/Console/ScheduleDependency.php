@@ -16,7 +16,7 @@ class ScheduleDependency
     public function dependencyClassesForSchedule(): array
     {
         return [
-            new FilmApiDataCache(new Load(new Client(), new RedisService(), new Redis(), new HttpService()), new RedisService, new Redis),
+            new FilmApiDataCache(new Load(new Client, new RedisService, new Redis, new HttpService), new RedisService, new Redis),
         ];
     }
 
