@@ -16,7 +16,7 @@ use Loopia\App\Services\RedisService;
 class FilmApiDataLoader implements ResponseInterface, ResponseSingleInterface
 {
 
-    private function getLoadClass() :object
+    private function getLoadClass() :Load
     {
         return new Load(new Client, new RedisService, new Redis, new HttpService);
     }
