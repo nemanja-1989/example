@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Loopia\App\Console;
 
@@ -9,19 +9,22 @@ use Loopia\App\Api\Redis;
 use Loopia\App\Services\HttpService;
 use Loopia\App\Services\RedisService;
 
-class ScheduleDependency {
+class ScheduleDependency
+{
 
     private array $scheduleClasses;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->itemsForCache = new FilmApiDataCache(new FilmApiDataLoader(new Client), new Redis);
     }
 
-    public function dependencyClassesForSchedule(): array {
+    public function dependencyClassesForSchedule(): array
+    {
         return $this->scheduleClasses = [
             $this->itemsForCache
-        ] ?? 
-        throw new \Exception("Schedule Classes injection Interface broken!");
-    } 
+        ] ??
+            throw new \Exception("Schedule Classes injection Interface broken!");
+    }
 
 }

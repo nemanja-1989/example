@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /*
  * © Loopia. All rights reserved.
@@ -6,8 +6,9 @@
 
 namespace Loopia\App\Constants;
 
-class Constants {
-    CONST MOVIE_URI = 'http://filmapi.loopiarnd.com/items';
-    CONST MOVIE_API_USERNAME = 'zeaL';
-    CONST MOVIE_API_PASSWORD = 'zeaLAPP';
+class Constants
+{
+    const MOVIE_URI = 'http://filmapi.loopiarnd.com/items';
+    const MOVIE_API_USERNAME = 'zeaL';
+    const MOVIE_API_PASSWORD = 'zeaLAPP';
 }

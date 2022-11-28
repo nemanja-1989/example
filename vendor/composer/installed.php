@@ -3,7 +3,7 @@
         'name' => 'testing2023/project1',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '3549b1f0a94d389e84186367d8fccfba8a8c396c',
+        'reference' => 'ff027be67f55344aca971b44bd4c42d4dd379904',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -311,7 +311,7 @@
         'testing2023/project1' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '3549b1f0a94d389e84186367d8fccfba8a8c396c',
+            'reference' => 'ff027be67f55344aca971b44bd4c42d4dd379904',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
