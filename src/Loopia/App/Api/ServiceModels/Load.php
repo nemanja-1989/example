@@ -33,20 +33,27 @@ use Loopia\App\Services\RedisService;
     }
 
     public function loadData() :ArrayCollection|string
-    {
-        $data = $this->redis->getCache($this->redisService, '/v1/items') ? 
-        $this->memcache->getCache($this->memcacheService, '/v1/items') : 
-        $this->getItemsRequest();
+    {  
+        if($this->redis->getCache($this->redisService, '/v1/items') !== null) {
+            $data = $this->redis->getCache($this->redisService, '/v1/items');
+        }else if($this->memcache->getCache($this->memcacheService, '/v1/items') !== null) {
+            $data = $this->memcache->getCache($this->memcacheService, '/v1/items');
+        }else {
+            $data = $this->getItemsRequest();
+        }
         return new ArrayCollection(json_decode($data, TRUE));
     }
 
      public function loadItemData(int $id) :ArrayCollection|string
     {   
-        $data = $this->redis->getCache($this->redisService, '/v1/item/' . $id) ?
-        $this->memcache->getCache($this->memcacheService, '/v1/item/' . $id) :
-        $this->getSingleItemsRequest($id);
-        return new ArrayCollection(json_decode($data, TRUE));
-            
+        if($this->redis->getCache($this->redisService, '/v1/item/' . $id) !== null) {
+            $data = $this->redis->getCache($this->redisService, '/v1/item/' . $id);
+        }else if($this->memcache->getCache($this->memcacheService, '/v1/item/' . $id) !== null) {
+            $data = $this->memcache->getCache($this->memcacheService, '/v1/item/' . $id);
+        }else {
+            $data = $this->getSingleItemsRequest($id);
+        }
+        return new ArrayCollection(json_decode($data, TRUE));    
     }
 
      private function getItemsRequest(): string
