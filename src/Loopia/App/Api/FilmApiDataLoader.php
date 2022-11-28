@@ -30,7 +30,7 @@ class FilmApiDataLoader {
 		}
 	}
 
-	public function loadItemData(int $id, RedisService $redisService, Redis $redis, FilmApiDataCache $filmCache) {
+	public function loadItemData(int $id, RedisService $redisService, Redis $redis) {
 		try{
             if($redisService->getService()->exists('/v1/item/' . $id) === 1){
                 $data = $redis->getCache($redisService,'/v1/item/' . $id);
