@@ -17,7 +17,7 @@ class FilmApiDataCache extends Redis implements RedisDependency {
         $this->redisSingleItem();
     }
 
-    public function redisItems() {
+    private function redisItems() {
         try{
             $this->setCache('/v1/items', $this->loader->getItemsRequest());
         }catch(\Exception $e) {
@@ -25,7 +25,7 @@ class FilmApiDataCache extends Redis implements RedisDependency {
         }
     }
 
-    public function redisSingleItem() {
+    private function redisSingleItem() {
         if($this->getCache('/v1/items')) {
             foreach(json_decode($this->getCache('/v1/items'), TRUE) as $item) {
                 try{

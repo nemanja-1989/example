@@ -13,14 +13,10 @@ use Loopia\App\Constants\Constants;
 class Client extends HttpService {
 
 	public function getRequest(string $uri): Request {
-		try{
 			return new Request('GET', $uri, [
 				'X-Authorization' => 'Bearer ' . Constants::MOVIE_API_USERNAME . ":" . base64_encode(Constants::MOVIE_API_PASSWORD),
 				'Accept'          => 'application/json'
-			]);
-		}catch(\Exception $e) {
-			return $e->getMessage();
-		}	
+			])?? throw new \Exception('Client broken!');
 	}
 
 	public function send(Request $request) {
