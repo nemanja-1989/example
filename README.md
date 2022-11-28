@@ -11,6 +11,7 @@ Simple Application for candidate testing
 # With cron
 - composer install
 - sudo apt install redis-server
+- sudo systemctl start memcached
 - crontab -e
 - * * * * * php /path-to-your-project/kernel.php >/dev/null 2>&1
 - systemctl start redis
