@@ -4,7 +4,7 @@
  * © Loopia. All rights reserved.
  */
 
-namespace Loopia\App\Api;
+namespace Loopia\App\Api\ServiceModels;
 
 use GuzzleHttp\Psr7\Request;
 use Loopia\App\Services\HttpService;

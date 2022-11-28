@@ -1,6 +1,6 @@
 <?php
 
-namespace Loopia\App\Api;
+namespace Loopia\App\Api\ServiceModels;
 
 use \Loopia\App\Services\RedisService;
 

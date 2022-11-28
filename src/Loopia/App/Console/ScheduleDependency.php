@@ -2,15 +2,16 @@
 
 namespace Loopia\App\Console;
 
-use Loopia\App\Api\Client;
+use Loopia\App\Api\ServiceModels\Client;
 use Loopia\App\Api\FilmApiDataCache;
 use Loopia\App\Api\FilmApiDataMemcache;
-use Loopia\App\Api\Load;
-use Loopia\App\Api\Memcache;
-use Loopia\App\Api\Redis;
+use Loopia\App\Api\ServiceModels\Memcache;
+use Loopia\App\Api\ServiceModels\Redis;
+use Loopia\App\Api\ServiceModels\Load as ServiceModelsLoad;
 use Loopia\App\Services\HttpService;
 use Loopia\App\Services\MemcacheService;
 use Loopia\App\Services\RedisService;
+use Loopia\App\Api\ServiceModels\Load;
 
 class ScheduleDependency
 {

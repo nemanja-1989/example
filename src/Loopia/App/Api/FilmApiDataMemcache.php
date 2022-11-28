@@ -3,6 +3,8 @@
 namespace Loopia\App\Api;
 
 use Exception;
+use Loopia\App\Api\ServiceModels\Load;
+use Loopia\App\Api\ServiceModels\Memcache;
 use Loopia\App\Interface\MemcacheDependency;
 use Loopia\App\Services\MemcacheService;
 

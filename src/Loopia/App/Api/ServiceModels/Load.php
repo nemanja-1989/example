@@ -4,7 +4,7 @@
  * © Loopia. All rights reserved.
  */
 
-namespace Loopia\App\Api;
+namespace Loopia\App\Api\ServiceModels;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Loopia\App\Services\HttpService;
