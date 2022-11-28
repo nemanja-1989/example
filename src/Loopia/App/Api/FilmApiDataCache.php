@@ -38,4 +38,8 @@ class FilmApiDataCache implements RedisDependency {
             }
         }
     }
+
+    public function prepareForSingleCacheIfNotExists() {
+        return $this->redisSingleItem();
+    }
 }

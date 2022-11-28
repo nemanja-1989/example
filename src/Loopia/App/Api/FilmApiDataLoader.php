@@ -30,10 +30,14 @@ class FilmApiDataLoader {
 		}
 	}
 
-	public function loadItemData(int $id, RedisService $redisService, Redis $redis) {
+	public function loadItemData(int $id, RedisService $redisService, Redis $redis, FilmApiDataCache $filmCache) {
 		try{
-			$data = json_decode($redis->getCache($redisService,'/v1/item/' . $id), TRUE);
-			return $data;
+            if($redisService->getService()->exists('/v1/item/' . $id) === 1){
+                $data = $redis->getCache($redisService,'/v1/item/' . $id);
+            }else {
+                $data = $this->getSingleItemsRequest($id);
+            }
+            return new ArrayCollection(json_decode($data, TRUE));
 		}catch(\Exception $e) {
 			return $e->getMessage();
 		}
@@ -43,4 +47,9 @@ class FilmApiDataLoader {
 		return $this->filmApiClient->send($this->filmApiClient->getRequest('items'), new HttpService)->getBody()->getContents()??
         throw new \Exception("Get items crashed!");
 	}
+
+    public function getSingleItemsRequest($id) {
+        return $this->filmApiClient->send($this->filmApiClient->getRequest('items/' . $id), new HttpService)->getBody()->getContents()??
+            throw new \Exception("Get items crashed!");
+    }
 }
