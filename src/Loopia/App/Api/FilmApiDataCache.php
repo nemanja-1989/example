@@ -21,7 +21,7 @@ class FilmApiDataCache implements RedisDependency {
 
     private function redisItems() {
         try{
-            $this->redis->setCache(new RedisService,'/v1/items', $this->loader->getItemsRequest());
+            $this->redis->setCache(new RedisService,'/v1/items', $this->loader->publicItemsRequest());
         }catch(\Exception $e) {
             return $e->getMessage();
         }

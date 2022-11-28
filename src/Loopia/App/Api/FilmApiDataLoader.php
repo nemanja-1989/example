@@ -43,13 +43,17 @@ class FilmApiDataLoader {
 		}
 	}
 
-	public function getItemsRequest() {
+	private function getItemsRequest() {
 		return $this->filmApiClient->send($this->filmApiClient->getRequest('items'), new HttpService)->getBody()->getContents()??
         throw new \Exception("Get items crashed!");
 	}
 
-    public function getSingleItemsRequest($id) {
+    private function getSingleItemsRequest($id) {
         return $this->filmApiClient->send($this->filmApiClient->getRequest('items/' . $id), new HttpService)->getBody()->getContents()??
             throw new \Exception("Get items crashed!");
+    }
+
+    public function publicItemsRequest(){
+        return $this->getItemsRequest();
     }
 }
