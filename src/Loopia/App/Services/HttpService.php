@@ -8,9 +8,9 @@ use Loopia\App\Interface\ServiceInterface;
 
 class HttpService implements ServiceInterface {
 
-    public function getService()
+    public function getService(string $url = null)
     {
-        return new Client(['base_uri' => Constants::MOVIE_URI, 'timeout' => 0, 'allow_redirects' => false]);
+        return new Client(['base_uri' => $url, 'timeout' => 0, 'allow_redirects' => false]);
     }
     
 }
