@@ -8,10 +8,13 @@ namespace Loopia\App\Api;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use \Loopia\App\Api\Redis;
+use Loopia\App\Services\HttpService;
+use Loopia\App\Services\RedisService;
 
 class FilmApiDataLoader extends Redis {
 
 	public function __construct(protected Client $filmApiClient) {
+        parent::__construct(new RedisService());
 		$this->filmApiClient = $filmApiClient;
 	}
 
