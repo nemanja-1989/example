@@ -10,7 +10,7 @@ use Loopia\App\Services\RedisService;
 
 class ScheduleDependency {
 
-    public array $scheduleClasses;
+    private array $scheduleClasses;
 
     public function __construct() {
         $this->itemsForCache = new FilmApiDataCache(new FilmApiDataLoader(new Client), new Redis(new RedisService()));
