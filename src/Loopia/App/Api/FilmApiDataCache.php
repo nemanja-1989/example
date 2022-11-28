@@ -10,9 +10,10 @@ use Loopia\App\Services\RedisService;
 class FilmApiDataCache implements RedisDependency
 {
 
-    public function __construct(protected FilmApiDataLoader $loader, protected Redis $redis)
+    public function __construct(protected FilmApiDataLoader $loader, protected RedisService $redisService, protected Redis $redis)
     {
         $this->loader = $loader;
+        $this->redisService = $redisService;
         $this->redis = $redis;
     }
 
@@ -24,14 +25,14 @@ class FilmApiDataCache implements RedisDependency
 
     private function redisItems()
     {
-        $this->redis->setCache(new RedisService, '/v1/items', $this->loader->publicItemsRequest());
+        $this->redis->setCache($this->redisService, '/v1/items', $this->loader->publicItemsRequest());
     }
 
     private function redisSingleItem()
     {
-        if ($this->redis->getCache(new RedisService, '/v1/items')) {
-            foreach (json_decode($this->redis->getCache(new RedisService, '/v1/items'), TRUE) as $item) {
-                $this->redis->setCache(new RedisService, '/v1/item/' . $item['id'], json_encode($item));
+        if ($this->redis->getCache($this->redisService, '/v1/items')) {
+            foreach (json_decode($this->redis->getCache($this->redisService, '/v1/items'), TRUE) as $item) {
+                $this->redis->setCache($this->redisService, '/v1/item/' . $item['id'], json_encode($item));
             }
         }
     }

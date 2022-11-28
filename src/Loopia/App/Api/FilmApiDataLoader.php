@@ -31,7 +31,7 @@ class FilmApiDataLoader implements ResponseInterface, ResponseSingleInterface
         return $this->loadItemData($id, new RedisService, new Redis);
     }
 
-    private function loadData(RedisService $redisService, Redis $redis)
+    private function loadData(RedisService $redisService, Redis $redis) :ArrayCollection|string
     {
         try {
             if ($redisService->getService()->exists('/v1/items') === 1) {
@@ -45,7 +45,7 @@ class FilmApiDataLoader implements ResponseInterface, ResponseSingleInterface
         }
     }
 
-    private function loadItemData(int $id, RedisService $redisService, Redis $redis)
+    private function loadItemData(int $id, RedisService $redisService, Redis $redis) :ArrayCollection|string
     {
         try {
             if ($redisService->getService()->exists('/v1/item/' . $id) === 1) {
