@@ -16,18 +16,18 @@ use Loopia\App\Services\RedisService;
 class FilmApiDataLoader implements ResponseInterface, ResponseSingleInterface
 {
 
-    public function __construct()
+    private function getLoadClass()
     {
-        $this->load = new Load(new Client, new RedisService, new Redis, new HttpService);
+        return new Load(new Client, new RedisService, new Redis, new HttpService);
     }
 
     public function getResponse() :ArrayCollection|string
     {
-        return $this->load->loadData();
+        return $this->getLoadClass()->loadData();
     }
 
     public function getById($id) :ArrayCollection|string
     {
-        return $this->load->loadItemData($id);
+        return $this->getLoadClass()->loadItemData($id);
     }
 }
