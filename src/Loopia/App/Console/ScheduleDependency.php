@@ -13,9 +13,6 @@ class ScheduleDependency {
     public array $scheduleClasses;
 
     public function __construct() {
-        $this->client = new Client;
-        $this->redis = new Redis(new RedisService());
-        $this->filmLoader = new FilmApiDataLoader(new Client);
         $this->itemsForCache = new FilmApiDataCache(new FilmApiDataLoader(new Client), new Redis(new RedisService()));
     }
 
