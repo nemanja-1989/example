@@ -12,7 +12,6 @@ use Loopia\App\Constants\Constants;
 
 class Client
 {
-
     public function getRequest(string $uri): Request
     {
         return new Request('GET', $uri, [
@@ -28,6 +27,6 @@ class Client
 
     private function getResponse(Request $request, HttpService $httpService): \GuzzleHttp\Psr7\Response|\ErrorException
     {
-          return $httpService->getService('http://filmapi.loopiarnd.com/items')->send($request);
+          return $httpService->getService(Constants::MOVIE_URI . 'items')->send($request);
     }
 }
