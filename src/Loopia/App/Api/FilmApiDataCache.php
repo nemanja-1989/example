@@ -6,10 +6,11 @@ use Exception;
 use Loopia\App\Api\FilmApiDataLoader;
 use Loopia\App\Interface\RedisDependency;
 
-class FilmApiDataCache extends Redis implements RedisDependency {
+class FilmApiDataCache implements RedisDependency {
 
-    public function __construct(protected FilmApiDataLoader $loader) {
+    public function __construct(protected FilmApiDataLoader $loader, protected Redis $redis) {
         $this->loader = $loader;
+        $this->redis = $redis;
     }
 
     public function redisDependencyClassesMethodsForCaching() {
@@ -19,17 +20,17 @@ class FilmApiDataCache extends Redis implements RedisDependency {
 
     private function redisItems() {
         try{
-            $this->setCache('/v1/items', $this->loader->getItemsRequest());
+            $this->redis->setCache('/v1/items', $this->loader->getItemsRequest());
         }catch(\Exception $e) {
             return $e->getMessage();
         }
     }
 
     private function redisSingleItem() {
-        if($this->getCache('/v1/items')) {
-            foreach(json_decode($this->getCache('/v1/items'), TRUE) as $item) {
+        if($this->redis->getCache('/v1/items')) {
+            foreach(json_decode($this->redis->getCache('/v1/items'), TRUE) as $item) {
                 try{
-                    $this->setCache('/v1/item/' . $item['id'], json_encode($item));
+                    $this->redis->setCache('/v1/item/' . $item['id'], json_encode($item));
                 }catch(\Exception $e) {
                     return $e->getMessage();
                 } 
