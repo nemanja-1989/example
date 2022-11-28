@@ -4,7 +4,7 @@ namespace Loopia\App\Console;
 
 use Loopia\App\Interface\RedisDependency;
 
-class Schedule extends ScheduleDependency
+final class Schedule extends ScheduleDependency
 {
 
     private function run(RedisDependency $redisDependency)
