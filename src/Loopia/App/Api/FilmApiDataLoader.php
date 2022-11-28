@@ -40,7 +40,7 @@ class FilmApiDataLoader {
 	}
 
 	public function getItemsRequest() {
-		return $this->filmApiClient->send($this->filmApiClient->getRequest('items'))->getBody()->getContents()??
+		return $this->filmApiClient->send($this->filmApiClient->getRequest('items'), new HttpService)->getBody()->getContents()??
         throw new \Exception("Get items crashed!");
 	}
 }

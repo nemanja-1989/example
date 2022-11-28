@@ -10,7 +10,7 @@ use GuzzleHttp\Psr7\Request;
 use Loopia\App\Services\HttpService;
 use Loopia\App\Constants\Constants;
 
-class Client extends HttpService {
+class Client {
 
 	public function getRequest(string $uri): Request {
 			return new Request('GET', $uri, [
@@ -19,9 +19,9 @@ class Client extends HttpService {
 			])?? throw new \Exception('Client broken!');
 	}
 
-	public function send(Request $request) {
+	public function send(Request $request, HttpService $httpService) {
 		try{
-			return $this->getService()->send($request);
+			return $httpService->getService()->send($request);
 		}catch(\Exception $e) {
 			return $e->getMessage();
 		}
