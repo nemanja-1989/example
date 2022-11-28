@@ -10,7 +10,7 @@ use Loopia\App\Services\RedisService;
 class FilmApiDataCache implements RedisDependency
 {
 
-    public function __construct(protected FilmApiDataLoader $loader, protected RedisService $redisService, protected Redis $redis)
+    public function __construct(protected Load $loader, protected RedisService $redisService, protected Redis $redis)
     {
         $this->loader = $loader;
         $this->redisService = $redisService;

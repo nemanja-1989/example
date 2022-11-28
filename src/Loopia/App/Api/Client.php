@@ -6,9 +6,7 @@
 
 namespace Loopia\App\Api;
 
-use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
-use http\Env\Response;
 use Loopia\App\Services\HttpService;
 use Loopia\App\Constants\Constants;
 

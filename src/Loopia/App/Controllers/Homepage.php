@@ -7,6 +7,7 @@
 namespace Loopia\App\Controllers;
 
 use Loopia\App\Api\FilmApiDataLoader;
+use Loopia\App\Api\Load;
 use Loopia\App\Api\Redis;
 use Loopia\App\Services\RedisService;
 
