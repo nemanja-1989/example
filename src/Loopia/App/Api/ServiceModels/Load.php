@@ -44,8 +44,9 @@ class Load
     public function loadData(): ArrayCollection|string
     {
         if ($this->redis->getCache($this->redisService, ItemsConstants::ITEMS) !== null) {
+            var_dump(1);
             $data = $this->redis->getCache($this->redisService, ItemsConstants::ITEMS);
-        } else if ($this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS) !== null) {
+        } else if ($this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS) !== "") {
             $data = $this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS);
         } else {
             $data = $this->getItemsRequest();
@@ -57,7 +58,7 @@ class Load
     {
         if ($this->redis->getCache($this->redisService, ItemsConstants::item($id)) !== null) {
             $data = $this->redis->getCache($this->redisService, ItemsConstants::item($id));
-        } else if ($this->memcache->getCache($this->memcacheService, ItemsConstants::item($id)) !== null) {
+        } else if ($this->memcache->getCache($this->memcacheService, ItemsConstants::item($id)) !== "") {
             $data = $this->memcache->getCache($this->memcacheService, ItemsConstants::item($id));
         } else {
             $data = $this->getSingleItemsRequest($id);
