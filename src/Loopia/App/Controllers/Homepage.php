@@ -22,7 +22,7 @@ class Homepage extends BaseController {
      * @throws \Loopia\App\Error\TemplatePathNotFoundException
      * @throws \Loopia\App\Error\TemplatePathNotReadableException
      */
-	public function __invoke() {
+	public function __invoke(): string|false {
 		return $this->render('index.phtml', [
 			'items' => $this->loader->getResponse(),
 		]);

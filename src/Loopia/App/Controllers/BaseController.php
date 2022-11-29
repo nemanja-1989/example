@@ -15,7 +15,7 @@ abstract class BaseController {
      * @param string $title
      * @return false|string
      */
-	protected function renderBody(string $content, string $title) {
+	protected function renderBody(string $content, string $title): string|false {
 		$templatePath = self::TEMPLATE_PATH . DIRECTORY_SEPARATOR . '_body.phtml';
 		return (new Template($templatePath, ['content' => $content, 'title' => $title]))->render();
 	}
@@ -27,7 +27,7 @@ abstract class BaseController {
      * @throws TemplatePathNotFoundException
      * @throws TemplatePathNotReadableException
      */
-	protected function render(string $path, array $data = []) {
+	protected function render(string $path, array $data = []): string|false {
 		$templatePath = self::TEMPLATE_PATH . DIRECTORY_SEPARATOR . $path;
 
 		if (!is_file($templatePath)) {

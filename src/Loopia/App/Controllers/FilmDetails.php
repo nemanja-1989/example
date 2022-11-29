@@ -23,7 +23,7 @@ class FilmDetails extends BaseController {
      * @throws \Loopia\App\Error\TemplatePathNotFoundException
      * @throws \Loopia\App\Error\TemplatePathNotReadableException
      */
-	public function __invoke(int $id) {
+	public function __invoke(int $id) : string|false {
 		return $this->render('show.phtml', [
 			'items' => $this->loader->getById(id: $id),
 		]);
