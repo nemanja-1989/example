@@ -29,6 +29,9 @@ class FilmApiDataLoader implements ResponseInterface, ResponseSingleInterface
         return new Load(new Client, new RedisService, new Redis, new HttpService, new MemcacheService, new Memcache);
     }
 
+    /**
+     * @return ArrayCollection|string
+     */
     public function getResponse(): ArrayCollection|string
     {
         return $this->getLoadClass()->loadData();
