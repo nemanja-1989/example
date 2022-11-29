@@ -33,7 +33,7 @@ class Client
      */
     public function getRequest(string $uri, string $username, string $password): Request
     {
-        return $this->getRequestPrivate($uri, $username, $password);
+        return $this->getRequestPrivate(uri: $uri, username: $username, password: $password);
     }
 
     /**
@@ -45,7 +45,7 @@ class Client
      */
     public function send(Request $request, HttpService $httpService, $uri): \GuzzleHttp\Psr7\Response|\ErrorException
     {
-        return $this->getResponse($request, $httpService, $uri);
+        return $this->getResponse(request: $request, httpService: $httpService, uri: $uri);
     }
 
     /**

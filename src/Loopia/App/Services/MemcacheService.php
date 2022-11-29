@@ -11,7 +11,7 @@ class MemcacheService implements ServiceInterface{
      */
     public function getService() {
         $memcache = new \Memcached();
-        $memcache->addServer('127.0.0.1', 11211);
+        $memcache->addServer(host: '127.0.0.1', port: 11211);
         return $memcache;
     }
 }
