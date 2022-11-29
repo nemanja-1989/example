@@ -17,7 +17,7 @@ class Client
      * @param string $password
      * @return Request
      */
-    public function getRequestPrivate(string $uri, string $username, string $password): Request
+    private function getRequestPrivate(string $uri, string $username, string $password): Request
     {
         return new Request('GET', $uri, [
             'X-Authorization' => 'Bearer ' . $username . ":" . \base64_encode($password),
