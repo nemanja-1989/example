@@ -83,7 +83,11 @@ class Load
      */
     private function getItemsRequest(): string
     {
-        return $this->filmApiClient->send($this->filmApiClient->getRequest(ItemsConstants::ITEMS_URI, Constants::MOVIE_API_USERNAME, Constants::MOVIE_API_PASSWORD), $this->httpService, Constants::MOVIE_URI . 'items')->getBody()->getContents();
+        return $this->filmApiClient
+            ->send($this->filmApiClient
+                ->getRequest(ItemsConstants::ITEMS_URI, Constants::MOVIE_API_USERNAME, Constants::MOVIE_API_PASSWORD), $this->httpService, Constants::MOVIE_URI . 'items')
+            ->getBody()
+            ->getContents();
     }
 
     /**
@@ -92,7 +96,11 @@ class Load
      */
     private function getSingleItemsRequest($id): string
     {
-        return $this->filmApiClient->send($this->filmApiClient->getRequest(ItemsConstants::itemUri($id), Constants::MOVIE_API_USERNAME, Constants::MOVIE_API_PASSWORD), $this->httpService, Constants::MOVIE_URI . 'items')->getBody()->getContents();
+        return $this->filmApiClient
+            ->send($this->filmApiClient
+                ->getRequest(ItemsConstants::itemUri($id), Constants::MOVIE_API_USERNAME, Constants::MOVIE_API_PASSWORD), $this->httpService, Constants::MOVIE_URI . 'items')
+            ->getBody()
+            ->getContents();
     }
 
     /**
