@@ -2,6 +2,7 @@
 
 namespace Loopia\App\Console;
 
+use Loopia\App\Constants\Items\ItemsConstants;
 use Loopia\App\Interface\MemcacheDependency;
 use Loopia\App\Interface\RedisDependency;
 use Loopia\App\ServiceModels\Memcache;
@@ -67,14 +68,14 @@ final class Schedule extends ScheduleDependency
     }
 
     private function checkRedisCache() :bool {
-        if($this->redis->getCache($this->redisService, '/v1/items') === null) {
+        if($this->redis->getCache($this->redisService, ItemsConstants::ITEMS_CACHE) === null) {
             return true;
         }
         return false;
     }
 
     private function checkMemcache() :bool {
-        if($this->memcache->getCache($this->memcacheService, '/v1/items') === null) {
+        if($this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS_CACHE) === null) {
             return true;
         }
         return false;
