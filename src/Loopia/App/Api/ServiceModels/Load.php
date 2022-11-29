@@ -14,6 +14,14 @@ use Loopia\App\Services\RedisService;
 
 class Load
 {
+    /**
+     * @param Client $filmApiClient
+     * @param RedisService $redisService
+     * @param Redis $redis
+     * @param HttpService $httpService
+     * @param MemcacheService $memcacheService
+     * @param Memcache $memcache
+     */
     public function __construct
     (
         protected Client          $filmApiClient,

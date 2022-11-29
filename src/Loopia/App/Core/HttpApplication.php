@@ -19,11 +19,20 @@ abstract class HttpApplication extends Application {
 	 */
 	protected $dispatcher;
 
+    /**
+     * @param Dispatcher $dispatcher
+     * @param LoggerInterface $logger
+     */
 	public function __construct(Dispatcher $dispatcher, LoggerInterface $logger) {
 		parent::__construct($logger);
 		$this->dispatcher = $dispatcher;
 	}
 
+    /**
+     * @return mixed|void
+     * @throws MethodNotAllowedException
+     * @throws NotFoundException
+     */
 	public function run() {
 		// Fetch method and URI from somewhere
 		$httpMethod = filter_input(INPUT_SERVER, 'REQUEST_METHOD');

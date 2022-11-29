@@ -8,11 +8,19 @@ use Loopia\App\Interface\RedisDependency;
 final class Schedule extends ScheduleDependency
 {
 
+    /**
+     * @param RedisDependency $redisDependency
+     * @return void
+     */
     private function runRedis(RedisDependency $redisDependency) :void
     {
         $redisDependency->redisDependencyClassesMethodsForCaching();
     }
 
+    /**
+     * @param MemcacheDependency $memcacheDependency
+     * @return void
+     */
     private function runMemcache(MemcacheDependency $memcacheDependency) :void
     {
         $memcacheDependency->memcacheDependencyClassesMethodsForCaching();

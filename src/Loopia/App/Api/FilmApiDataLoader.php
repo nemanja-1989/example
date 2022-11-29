@@ -21,6 +21,9 @@ use Loopia\App\Services\RedisService;
 class FilmApiDataLoader implements ResponseInterface, ResponseSingleInterface
 {
 
+    /**
+     * @return Load
+     */
     private function getLoadClass(): Load
     {
         return new Load(new Client, new RedisService, new Redis, new HttpService, new MemcacheService, new Memcache);
@@ -31,6 +34,10 @@ class FilmApiDataLoader implements ResponseInterface, ResponseSingleInterface
         return $this->getLoadClass()->loadData();
     }
 
+    /**
+     * @param $id
+     * @return ArrayCollection|string
+     */
     public function getById($id): ArrayCollection|string
     {
         return $this->getLoadClass()->loadItemData($id);

@@ -7,7 +7,10 @@ use Predis\Client;
 use Predis\ClientInterface;
 
 class RedisService implements ServiceInterface{
-    
+
+    /**
+     * @return Client
+     */
     public function getService() :Client {
         return new \Predis\Client();
     }

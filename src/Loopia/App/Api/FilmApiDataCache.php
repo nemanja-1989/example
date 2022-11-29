@@ -11,6 +11,11 @@ use Loopia\App\Api\ServiceModels\Redis;
 class FilmApiDataCache implements RedisDependency
 {
 
+    /**
+     * @param Load $loader
+     * @param RedisService $redisService
+     * @param Redis $redis
+     */
     public function __construct
     (
         protected Load         $loader,

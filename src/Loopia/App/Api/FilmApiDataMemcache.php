@@ -11,6 +11,11 @@ use Loopia\App\Services\MemcacheService;
 class FilmApiDataMemcache implements MemcacheDependency
 {
 
+    /**
+     * @param Load $loader
+     * @param MemcacheService $memcacheService
+     * @param Memcache $memcache
+     */
     public function __construct
     (
         protected Load            $loader,

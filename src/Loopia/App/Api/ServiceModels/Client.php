@@ -12,6 +12,10 @@ use Loopia\App\Constants\Constants;
 
 class Client
 {
+    /**
+     * @param string $uri
+     * @return Request
+     */
     public function getRequest(string $uri): Request
     {
         return new Request('GET', $uri, [
@@ -20,11 +24,22 @@ class Client
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param HttpService $httpService
+     * @return \GuzzleHttp\Psr7\Response|\ErrorException
+     */
     public function send(Request $request, HttpService $httpService): \GuzzleHttp\Psr7\Response|\ErrorException
     {
         return $this->getResponse($request, $httpService);
     }
 
+    /**
+     * @param Request $request
+     * @param HttpService $httpService
+     * @return \GuzzleHttp\Psr7\Response|\ErrorException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     private function getResponse(Request $request, HttpService $httpService): \GuzzleHttp\Psr7\Response|\ErrorException
     {
         return $httpService->getService(Constants::MOVIE_URI . 'items')->send($request);

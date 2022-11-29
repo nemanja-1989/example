@@ -8,6 +8,11 @@ namespace Loopia\App\Core;
 
 class FilmApiHttpApplication extends HttpApplication {
 
+    /**
+     * @return mixed|void
+     * @throws \Loopia\App\Error\MethodNotAllowedException
+     * @throws \Loopia\App\Error\NotFoundException
+     */
 	public function run() {
 		$content = parent::run();
 		\header('Content-Encoding: utf-8');
