@@ -18,7 +18,7 @@ class ScheduleDependency
     /**
      * @return FilmApiDataCache[]
      */
-    protected function dependencyClassesForScheduleRedis(): array
+    private function dependencyClassesForScheduleRedis(): array
     {
         return [
             new FilmApiDataCache(new Load(new Client, new RedisService, new Redis, new HttpService, new MemcacheService, new Memcache), new RedisService, new Redis),
@@ -28,11 +28,19 @@ class ScheduleDependency
     /**
      * @return FilmApiDataMemcache[]
      */
-    protected function dependencyClassesForScheduleMemcache(): array
+    private function dependencyClassesForScheduleMemcache(): array
     {
         return [
             new FilmApiDataMemcache(new Load(new Client, new RedisService, new Redis, new HttpService, new MemcacheService, new Memcache), new MemcacheService, new Memcache),
         ];
+    }
+
+    public function redisClasses(): array {
+        return $this->dependencyClassesForScheduleRedis();
+    }
+
+    public function memcacheClasses(): array {
+        return $this->dependencyClassesForScheduleMemcache();
     }
 
 }

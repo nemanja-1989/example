@@ -56,11 +56,11 @@ final class Schedule extends ScheduleDependency
     public function exe() :void
     {
         if($this->checkMemcache() === false || $this->checkRedisCache() === false) {
-            foreach ($this->dependencyClassesForScheduleRedis() as $class) {
+            foreach ($this->redisClasses() as $class) {
                 $this->runRedis($class);
             }
             if($this->checkRedisCache() === false) {
-                foreach ($this->dependencyClassesForScheduleMemcache() as $class) {
+                foreach ($this->memcacheClasses() as $class) {
                     $this->runMemcache($class);
                 }
             }
