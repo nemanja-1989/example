@@ -13,9 +13,11 @@ class Client
 {
     /**
      * @param string $uri
+     * @param string $username
+     * @param string $password
      * @return Request
      */
-    public function getRequest(string $uri, string $username, string $password): Request
+    public function getRequestPrivate(string $uri, string $username, string $password): Request
     {
         return new Request('GET', $uri, [
             'X-Authorization' => 'Bearer ' . $username . ":" . \base64_encode($password),
@@ -23,10 +25,17 @@ class Client
         ]);
     }
 
+    public function getRequest(string $uri, string $username, string $password)
+    {
+        return $this->getRequestPrivate($uri, $username, $password);
+    }
+
     /**
      * @param Request $request
      * @param HttpService $httpService
+     * @param $uri
      * @return \GuzzleHttp\Psr7\Response|\ErrorException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function send(Request $request, HttpService $httpService, $uri): \GuzzleHttp\Psr7\Response|\ErrorException
     {
@@ -36,6 +45,7 @@ class Client
     /**
      * @param Request $request
      * @param HttpService $httpService
+     * @param $uri
      * @return \GuzzleHttp\Psr7\Response|\ErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
