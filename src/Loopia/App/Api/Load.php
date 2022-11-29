@@ -45,6 +45,10 @@ class Load
         $this->memcache = $memcache;
     }
 
+    /**
+     * @return ArrayCollection|string
+     */
+
     public function loadData(): ArrayCollection|string
     {
         if ($this->redis->getCache($this->redisService, ItemsConstants::ITEMS_CACHE) !== null) {
@@ -56,6 +60,11 @@ class Load
         }
         return new ArrayCollection(\json_decode($data, TRUE));
     }
+
+    /**
+     * @param int $id
+     * @return ArrayCollection|string
+     */
 
     public function loadItemData(int $id): ArrayCollection|string
     {
@@ -69,16 +78,26 @@ class Load
         return new ArrayCollection(\json_decode($data, TRUE));
     }
 
+    /**
+     * @return string
+     */
     private function getItemsRequest(): string
     {
         return $this->filmApiClient->send($this->filmApiClient->getRequest(ItemsConstants::ITEMS_URI, Constants::MOVIE_API_USERNAME, Constants::MOVIE_API_PASSWORD), $this->httpService, Constants::MOVIE_URI . 'items')->getBody()->getContents();
     }
 
+    /**
+     * @param $id
+     * @return string
+     */
     private function getSingleItemsRequest($id): string
     {
         return $this->filmApiClient->send($this->filmApiClient->getRequest(ItemsConstants::itemUri($id), Constants::MOVIE_API_USERNAME, Constants::MOVIE_API_PASSWORD), $this->httpService, Constants::MOVIE_URI . 'items')->getBody()->getContents();
     }
 
+    /**
+     * @return string
+     */
     public function publicItemsRequest(): string
     {
         return $this->getItemsRequest();

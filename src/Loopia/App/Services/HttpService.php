@@ -3,7 +3,6 @@
 namespace Loopia\App\Services;
 
 use GuzzleHttp\Client;
-use Loopia\App\Constants\Constants;
 use Loopia\App\Interface\ServiceInterface;
 
 class HttpService implements ServiceInterface {
