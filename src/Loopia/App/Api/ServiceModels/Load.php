@@ -41,7 +41,7 @@ class Load
         } else {
             $data = $this->getItemsRequest();
         }
-        return new ArrayCollection(json_decode($data, TRUE));
+        return new ArrayCollection(\json_decode($data, TRUE));
     }
 
     public function loadItemData(int $id): ArrayCollection|string
@@ -53,7 +53,7 @@ class Load
         } else {
             $data = $this->getSingleItemsRequest($id);
         }
-        return new ArrayCollection(json_decode($data, TRUE));
+        return new ArrayCollection(\json_decode($data, TRUE));
     }
 
     private function getItemsRequest(): string

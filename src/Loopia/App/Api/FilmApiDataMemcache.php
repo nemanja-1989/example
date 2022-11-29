@@ -37,8 +37,8 @@ class FilmApiDataMemcache implements MemcacheDependency
     private function memcacheSingleItem(): void
     {
         if ($this->memcache->getCache($this->memcacheService, '/v1/items')) {
-            foreach (json_decode($this->memcache->getCache($this->memcacheService, '/v1/items'), TRUE) as $item) {
-                $this->memcache->setCache($this->memcacheService, '/v1/item/' . $item['id'], json_encode($item));
+            foreach (\json_decode($this->memcache->getCache($this->memcacheService, '/v1/items'), TRUE) as $item) {
+                $this->memcache->setCache($this->memcacheService, '/v1/item/' . $item['id'], \json_encode($item));
             }
         }
     }

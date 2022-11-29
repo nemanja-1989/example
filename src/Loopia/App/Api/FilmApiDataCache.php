@@ -37,8 +37,8 @@ class FilmApiDataCache implements RedisDependency
     private function redisSingleItem(): void
     {
         if ($this->redis->getCache($this->redisService, '/v1/items')) {
-            foreach (json_decode($this->redis->getCache($this->redisService, '/v1/items'), TRUE) as $item) {
-                $this->redis->setCache($this->redisService, '/v1/item/' . $item['id'], json_encode($item));
+            foreach (\json_decode($this->redis->getCache($this->redisService, '/v1/items'), TRUE) as $item) {
+                $this->redis->setCache($this->redisService, '/v1/item/' . $item['id'], \json_encode($item));
             }
         }
     }
