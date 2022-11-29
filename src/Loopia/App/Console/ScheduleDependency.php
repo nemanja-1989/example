@@ -16,6 +16,9 @@ use Loopia\App\Api\ServiceModels\Load;
 class ScheduleDependency
 {
 
+    /**
+     * @return FilmApiDataCache[]
+     */
     protected function dependencyClassesForScheduleRedis(): array
     {
         return [
@@ -23,6 +26,9 @@ class ScheduleDependency
         ];
     }
 
+    /**
+     * @return FilmApiDataMemcache[]
+     */
     protected function dependencyClassesForScheduleMemcache(): array
     {
         return [

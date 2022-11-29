@@ -26,6 +26,9 @@ final class Schedule extends ScheduleDependency
         $memcacheDependency->memcacheDependencyClassesMethodsForCaching();
     }
 
+    /**
+     * @return void
+     */
     public function exe() :void
     {
         foreach ($this->dependencyClassesForScheduleRedis() as $class) {
