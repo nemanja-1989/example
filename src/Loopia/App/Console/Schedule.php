@@ -2,12 +2,35 @@
 
 namespace Loopia\App\Console;
 
+use Loopia\App\Api\ServiceModels\Memcache;
+use Loopia\App\Api\ServiceModels\Redis;
 use Loopia\App\Interface\MemcacheDependency;
 use Loopia\App\Interface\RedisDependency;
+use Loopia\App\Services\MemcacheService;
+use Loopia\App\Services\RedisService;
 
 final class Schedule extends ScheduleDependency
 {
 
+    /**
+     * @param RedisService $redisService
+     * @param Redis $redis
+     * @param MemcacheService $memcacheService
+     * @param Memcache $memcache
+     */
+    public function __construct
+    (
+        protected RedisService $redisService,
+        protected Redis $redis,
+        protected MemcacheService $memcacheService,
+        protected Memcache $memcache
+    )
+    {
+        $this->redisService = $redisService;
+        $this->redis = $redis;
+        $this->memcacheService = $memcacheService;
+        $this->memcache = $memcache;
+    }
     /**
      * @param RedisDependency $redisDependency
      * @return void
@@ -31,11 +54,30 @@ final class Schedule extends ScheduleDependency
      */
     public function exe() :void
     {
-        foreach ($this->dependencyClassesForScheduleRedis() as $class) {
-            $this->runRedis($class);
+        if($this->checkMemcache() === false) {
+            foreach ($this->dependencyClassesForScheduleRedis() as $class) {
+                $this->runRedis($class);
+            }
+            if($this->checkRedisCache() === false) {
+                foreach ($this->dependencyClassesForScheduleMemcache() as $class) {
+                    $this->runMemcache($class);
+                }
+            }
         }
-        foreach ($this->dependencyClassesForScheduleMemcache() as $class) {
-            $this->runMemcache($class);
+
+    }
+
+    private function checkRedisCache() :bool {
+        if($this->redis->getCache($this->redisService, '/v1/items') === null) {
+            return true;
         }
+        return false;
+    }
+
+    private function checkMemcache() :bool {
+        if($this->memcache->getCache($this->memcacheService, '/v1/items') === null) {
+            return true;
+        }
+        return false;
     }
 }
