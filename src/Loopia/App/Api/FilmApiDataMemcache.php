@@ -35,14 +35,14 @@ class FilmApiDataMemcache implements MemcacheDependency
 
     private function memcacheItems(): void
     {
-        $this->memcache->setCache($this->memcacheService, ItemsConstants::ITEMS_CACHE, $this->loader->publicItemsRequest());
+        $this->memcache->setCache($this->memcacheService, name:ItemsConstants::ITEMS_CACHE, data: $this->loader->publicItemsRequest());
     }
 
     private function memcacheSingleItem(): void
     {
-        if ($this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS_CACHE)) {
-            foreach (\json_decode($this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS_CACHE), TRUE) as $item) {
-                $this->memcache->setCache($this->memcacheService, ItemsConstants::itemCache($item['id']), \json_encode($item));
+        if ($this->memcache->getCache($this->memcacheService, name: ItemsConstants::ITEMS_CACHE)) {
+            foreach (\json_decode($this->memcache->getCache($this->memcacheService, name: ItemsConstants::ITEMS_CACHE), TRUE) as $item) {
+                $this->memcache->setCache($this->memcacheService, name: ItemsConstants::itemCache($item['id']), data: \json_encode($item));
             }
         }
     }

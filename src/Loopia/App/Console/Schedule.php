@@ -68,14 +68,14 @@ final class Schedule extends ScheduleDependency
     }
 
     private function checkRedisCache() :bool {
-        if($this->redis->getCache($this->redisService, ItemsConstants::ITEMS_CACHE) === null) {
+        if($this->redis->getCache($this->redisService,  name: ItemsConstants::ITEMS_CACHE) === null) {
             return true;
         }
         return false;
     }
 
     private function checkMemcache() :bool {
-        if($this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS_CACHE) === null) {
+        if($this->memcache->getCache($this->memcacheService, name: ItemsConstants::ITEMS_CACHE) === null) {
             return true;
         }
         return false;

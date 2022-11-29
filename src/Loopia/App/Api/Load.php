@@ -51,10 +51,10 @@ class Load
 
     public function loadData(): ArrayCollection|string
     {
-        if ($this->redis->getCache($this->redisService, ItemsConstants::ITEMS_CACHE) !== null) {
-            $data = $this->redis->getCache($this->redisService, ItemsConstants::ITEMS_CACHE);
-        } else if ($this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS_CACHE) !== "") {
-            $data = $this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS_CACHE);
+        if ($this->redis->getCache($this->redisService, name: ItemsConstants::ITEMS_CACHE) !== null) {
+            $data = $this->redis->getCache($this->redisService, name: ItemsConstants::ITEMS_CACHE);
+        } else if ($this->memcache->getCache($this->memcacheService, name: ItemsConstants::ITEMS_CACHE) !== "") {
+            $data = $this->memcache->getCache($this->memcacheService, name: ItemsConstants::ITEMS_CACHE);
         } else {
             $data = $this->getItemsRequest();
         }
@@ -68,10 +68,10 @@ class Load
 
     public function loadItemData(int $id): ArrayCollection|string
     {
-        if ($this->redis->getCache($this->redisService, ItemsConstants::itemCache($id)) !== null) {
-            $data = $this->redis->getCache($this->redisService, ItemsConstants::itemCache($id));
-        } else if ($this->memcache->getCache($this->memcacheService, ItemsConstants::itemCache($id)) !== "") {
-            $data = $this->memcache->getCache($this->memcacheService, ItemsConstants::itemCache($id));
+        if ($this->redis->getCache($this->redisService, name: ItemsConstants::itemCache($id)) !== null) {
+            $data = $this->redis->getCache($this->redisService, name: ItemsConstants::itemCache($id));
+        } else if ($this->memcache->getCache($this->memcacheService, name: ItemsConstants::itemCache($id)) !== "") {
+            $data = $this->memcache->getCache($this->memcacheService, name: ItemsConstants::itemCache($id));
         } else {
             $data = $this->getSingleItemsRequest($id);
         }
@@ -85,7 +85,7 @@ class Load
     {
         return $this->filmApiClient
             ->send($this->filmApiClient
-                ->getRequest(ItemsConstants::ITEMS_URI, Constants::MOVIE_API_USERNAME, Constants::MOVIE_API_PASSWORD), $this->httpService, Constants::MOVIE_URI . 'items')
+                ->getRequest(ItemsConstants::ITEMS_URI, username: Constants::MOVIE_API_USERNAME, password: Constants::MOVIE_API_PASSWORD), $this->httpService, uri: Constants::MOVIE_URI . 'items')
             ->getBody()
             ->getContents();
     }
@@ -98,7 +98,7 @@ class Load
     {
         return $this->filmApiClient
             ->send($this->filmApiClient
-                ->getRequest(ItemsConstants::itemUri($id), Constants::MOVIE_API_USERNAME, Constants::MOVIE_API_PASSWORD), $this->httpService, Constants::MOVIE_URI . 'items')
+                ->getRequest(ItemsConstants::itemUri($id), username: Constants::MOVIE_API_USERNAME, password: Constants::MOVIE_API_PASSWORD), $this->httpService, uri: Constants::MOVIE_URI . 'items')
             ->getBody()
             ->getContents();
     }
