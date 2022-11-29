@@ -30,7 +30,7 @@ class FilmDetails extends BaseController {
      */
 	public function __invoke(int $id) {
 		return $this->render('show.phtml', [
-			'items' => $this->loader->getById($id),
+			'items' => $this->loader->getById(id: $id),
 		]);
 	}
 }

@@ -38,7 +38,7 @@ abstract class BaseController {
 			throw new TemplatePathNotReadableException($templatePath);
 		}
 		
-		return $this->renderBody((new Template($templatePath, $data))->render(), $data['items']['title'] ?? "Movies");
+		return $this->renderBody((new Template($templatePath, $data))->render(), title: $data['items']['title'] ?? "Movies");
 	}
 
 }
