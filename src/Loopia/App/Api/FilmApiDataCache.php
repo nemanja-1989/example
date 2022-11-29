@@ -3,6 +3,7 @@
 namespace Loopia\App\Api;
 
 use Exception;
+use Loopia\App\Constants\Items\ItemsConstants;
 use Loopia\App\Interface\RedisDependency;
 use Loopia\App\Services\RedisService;
 use Loopia\App\Api\ServiceModels\Load;
@@ -36,14 +37,14 @@ class FilmApiDataCache implements RedisDependency
 
     private function redisItems(): void
     {
-        $this->redis->setCache($this->redisService, '/v1/items', $this->loader->publicItemsRequest());
+        $this->redis->setCache($this->redisService, ItemsConstants::ITEMS, $this->loader->publicItemsRequest());
     }
 
     private function redisSingleItem(): void
     {
-        if ($this->redis->getCache($this->redisService, '/v1/items')) {
-            foreach (\json_decode($this->redis->getCache($this->redisService, '/v1/items'), TRUE) as $item) {
-                $this->redis->setCache($this->redisService, '/v1/item/' . $item['id'], \json_encode($item));
+        if ($this->redis->getCache($this->redisService, ItemsConstants::ITEMS)) {
+            foreach (\json_decode($this->redis->getCache($this->redisService, ItemsConstants::ITEMS), TRUE) as $item) {
+                $this->redis->setCache($this->redisService, ItemsConstants::item($item['id']), \json_encode($item));
             }
         }
     }

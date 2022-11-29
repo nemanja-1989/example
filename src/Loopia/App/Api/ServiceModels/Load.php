@@ -7,6 +7,7 @@
 namespace Loopia\App\Api\ServiceModels;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Loopia\App\Constants\Items\ItemsConstants;
 use Loopia\App\Services\HttpService;
 use Loopia\App\Services\MemcacheService;
 use Loopia\App\Services\RedisService;
@@ -42,10 +43,10 @@ class Load
 
     public function loadData(): ArrayCollection|string
     {
-        if ($this->redis->getCache($this->redisService, '/v1/items') !== null) {
-            $data = $this->redis->getCache($this->redisService, '/v1/items');
-        } else if ($this->memcache->getCache($this->memcacheService, '/v1/items') !== null) {
-            $data = $this->memcache->getCache($this->memcacheService, '/v1/items');
+        if ($this->redis->getCache($this->redisService, ItemsConstants::ITEMS) !== null) {
+            $data = $this->redis->getCache($this->redisService, ItemsConstants::ITEMS);
+        } else if ($this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS) !== null) {
+            $data = $this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS);
         } else {
             $data = $this->getItemsRequest();
         }
@@ -54,10 +55,10 @@ class Load
 
     public function loadItemData(int $id): ArrayCollection|string
     {
-        if ($this->redis->getCache($this->redisService, '/v1/item/' . $id) !== null) {
-            $data = $this->redis->getCache($this->redisService, '/v1/item/' . $id);
-        } else if ($this->memcache->getCache($this->memcacheService, '/v1/item/' . $id) !== null) {
-            $data = $this->memcache->getCache($this->memcacheService, '/v1/item/' . $id);
+        if ($this->redis->getCache($this->redisService, ItemsConstants::item($id)) !== null) {
+            $data = $this->redis->getCache($this->redisService, ItemsConstants::item($id));
+        } else if ($this->memcache->getCache($this->memcacheService, ItemsConstants::item($id)) !== null) {
+            $data = $this->memcache->getCache($this->memcacheService, ItemsConstants::item($id));
         } else {
             $data = $this->getSingleItemsRequest($id);
         }
