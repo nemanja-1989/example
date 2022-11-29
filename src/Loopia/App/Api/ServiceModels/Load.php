@@ -44,7 +44,6 @@ class Load
     public function loadData(): ArrayCollection|string
     {
         if ($this->redis->getCache($this->redisService, ItemsConstants::ITEMS) !== null) {
-            var_dump(1);
             $data = $this->redis->getCache($this->redisService, ItemsConstants::ITEMS);
         } else if ($this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS) !== "") {
             $data = $this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS);
