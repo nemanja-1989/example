@@ -20,13 +20,13 @@ class Client
         ]);
     }
 
-    public function send(Request $request, HttpService $httpService) : \GuzzleHttp\Psr7\Response|\ErrorException
+    public function send(Request $request, HttpService $httpService): \GuzzleHttp\Psr7\Response|\ErrorException
     {
         return $this->getResponse($request, $httpService);
     }
 
     private function getResponse(Request $request, HttpService $httpService): \GuzzleHttp\Psr7\Response|\ErrorException
     {
-          return $httpService->getService(Constants::MOVIE_URI . 'items')->send($request);
+        return $httpService->getService(Constants::MOVIE_URI . 'items')->send($request);
     }
 }

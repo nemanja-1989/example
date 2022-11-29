@@ -12,16 +12,16 @@ use Loopia\App\Services\MemcacheService;
 use Loopia\App\Services\RedisService;
 
 
- class Load
+class Load
 {
     public function __construct
     (
-        protected Client $filmApiClient, 
-        protected RedisService $redisService, 
-        protected Redis $redis, 
-        protected HttpService $httpService,
+        protected Client          $filmApiClient,
+        protected RedisService    $redisService,
+        protected Redis           $redis,
+        protected HttpService     $httpService,
         protected MemcacheService $memcacheService,
-        protected Memcache $memcache
+        protected Memcache        $memcache
     )
     {
         $this->filmApiClient = $filmApiClient;
@@ -32,31 +32,31 @@ use Loopia\App\Services\RedisService;
         $this->memcache = $memcache;
     }
 
-    public function loadData() :ArrayCollection|string
-    {  
-        if($this->redis->getCache($this->redisService, '/v1/items') !== null) {
+    public function loadData(): ArrayCollection|string
+    {
+        if ($this->redis->getCache($this->redisService, '/v1/items') !== null) {
             $data = $this->redis->getCache($this->redisService, '/v1/items');
-        }else if($this->memcache->getCache($this->memcacheService, '/v1/items') !== null) {
+        } else if ($this->memcache->getCache($this->memcacheService, '/v1/items') !== null) {
             $data = $this->memcache->getCache($this->memcacheService, '/v1/items');
-        }else {
+        } else {
             $data = $this->getItemsRequest();
         }
         return new ArrayCollection(json_decode($data, TRUE));
     }
 
-     public function loadItemData(int $id) :ArrayCollection|string
-    {   
-        if($this->redis->getCache($this->redisService, '/v1/item/' . $id) !== null) {
+    public function loadItemData(int $id): ArrayCollection|string
+    {
+        if ($this->redis->getCache($this->redisService, '/v1/item/' . $id) !== null) {
             $data = $this->redis->getCache($this->redisService, '/v1/item/' . $id);
-        }else if($this->memcache->getCache($this->memcacheService, '/v1/item/' . $id) !== null) {
+        } else if ($this->memcache->getCache($this->memcacheService, '/v1/item/' . $id) !== null) {
             $data = $this->memcache->getCache($this->memcacheService, '/v1/item/' . $id);
-        }else {
+        } else {
             $data = $this->getSingleItemsRequest($id);
         }
-        return new ArrayCollection(json_decode($data, TRUE));    
+        return new ArrayCollection(json_decode($data, TRUE));
     }
 
-     private function getItemsRequest(): string
+    private function getItemsRequest(): string
     {
         return $this->filmApiClient->send($this->filmApiClient->getRequest('items'), $this->httpService)->getBody()->getContents();
     }

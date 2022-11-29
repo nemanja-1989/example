@@ -7,7 +7,7 @@ use Loopia\App\Services\MemcacheService;
 class Memcache
 {
 
-    public function setCache(MemcacheService $memcache, string $name, string $data) :void
+    public function setCache(MemcacheService $memcache, string $name, string $data): void
     {
         $memcache->getService()->set($name, $data);
     }

@@ -7,7 +7,7 @@ use \Loopia\App\Services\RedisService;
 class Redis
 {
 
-    public function setCache(RedisService $redisService, string $name, string $data) :void
+    public function setCache(RedisService $redisService, string $name, string $data): void
     {
         $redisService->getService()->set($name, $data);
     }
