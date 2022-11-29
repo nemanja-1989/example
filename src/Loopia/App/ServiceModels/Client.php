@@ -25,7 +25,13 @@ class Client
         ]);
     }
 
-    public function getRequest(string $uri, string $username, string $password)
+    /**
+     * @param string $uri
+     * @param string $username
+     * @param string $password
+     * @return Request
+     */
+    public function getRequest(string $uri, string $username, string $password): Request
     {
         return $this->getRequestPrivate($uri, $username, $password);
     }
