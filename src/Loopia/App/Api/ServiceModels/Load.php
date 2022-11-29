@@ -7,6 +7,7 @@
 namespace Loopia\App\Api\ServiceModels;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Loopia\App\Constants\Constants;
 use Loopia\App\Constants\Items\ItemsConstants;
 use Loopia\App\Services\HttpService;
 use Loopia\App\Services\MemcacheService;
@@ -67,12 +68,12 @@ class Load
 
     private function getItemsRequest(): string
     {
-        return $this->filmApiClient->send($this->filmApiClient->getRequest(ItemsConstants::ITEMS_URI), $this->httpService)->getBody()->getContents();
+        return $this->filmApiClient->send($this->filmApiClient->getRequest(ItemsConstants::ITEMS_URI, Constants::MOVIE_API_USERNAME, Constants::MOVIE_API_PASSWORD), $this->httpService, Constants::MOVIE_URI . 'items')->getBody()->getContents();
     }
 
     private function getSingleItemsRequest($id): string
     {
-        return $this->filmApiClient->send($this->filmApiClient->getRequest(ItemsConstants::itemUri($id)), $this->httpService)->getBody()->getContents();
+        return $this->filmApiClient->send($this->filmApiClient->getRequest(ItemsConstants::itemUri($id), Constants::MOVIE_API_USERNAME, Constants::MOVIE_API_PASSWORD), $this->httpService, Constants::MOVIE_URI . 'items')->getBody()->getContents();
     }
 
     public function publicItemsRequest(): string
