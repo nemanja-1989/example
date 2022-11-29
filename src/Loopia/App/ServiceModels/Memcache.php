@@ -1,6 +1,6 @@
 <?php
 
-namespace Loopia\App\Api\ServiceModels;
+namespace Loopia\App\ServiceModels;
 
 use Loopia\App\Services\MemcacheService;
 

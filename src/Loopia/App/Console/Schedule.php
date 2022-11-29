@@ -2,10 +2,10 @@
 
 namespace Loopia\App\Console;
 
-use Loopia\App\Api\ServiceModels\Memcache;
-use Loopia\App\Api\ServiceModels\Redis;
 use Loopia\App\Interface\MemcacheDependency;
 use Loopia\App\Interface\RedisDependency;
+use Loopia\App\ServiceModels\Memcache;
+use Loopia\App\ServiceModels\Redis;
 use Loopia\App\Services\MemcacheService;
 use Loopia\App\Services\RedisService;
 

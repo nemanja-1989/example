@@ -2,11 +2,9 @@
 
 namespace Loopia\App\Api;
 
-use Exception;
-use Loopia\App\Api\ServiceModels\Load;
-use Loopia\App\Api\ServiceModels\Memcache;
 use Loopia\App\Constants\Items\ItemsConstants;
 use Loopia\App\Interface\MemcacheDependency;
+use Loopia\App\ServiceModels\Memcache;
 use Loopia\App\Services\MemcacheService;
 
 class FilmApiDataMemcache implements MemcacheDependency

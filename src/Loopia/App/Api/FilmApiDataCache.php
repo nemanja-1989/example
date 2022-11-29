@@ -2,12 +2,10 @@
 
 namespace Loopia\App\Api;
 
-use Exception;
 use Loopia\App\Constants\Items\ItemsConstants;
 use Loopia\App\Interface\RedisDependency;
+use Loopia\App\ServiceModels\Redis;
 use Loopia\App\Services\RedisService;
-use Loopia\App\Api\ServiceModels\Load;
-use Loopia\App\Api\ServiceModels\Redis;
 
 class FilmApiDataCache implements RedisDependency
 {

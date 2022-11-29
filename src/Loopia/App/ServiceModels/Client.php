@@ -4,11 +4,10 @@
  * © Loopia. All rights reserved.
  */
 
-namespace Loopia\App\Api\ServiceModels;
+namespace Loopia\App\ServiceModels;
 
 use GuzzleHttp\Psr7\Request;
 use Loopia\App\Services\HttpService;
-use Loopia\App\Constants\Constants;
 
 class Client
 {

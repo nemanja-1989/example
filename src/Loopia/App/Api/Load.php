@@ -4,11 +4,14 @@
  * © Loopia. All rights reserved.
  */
 
-namespace Loopia\App\Api\ServiceModels;
+namespace Loopia\App\Api;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Loopia\App\Constants\Constants;
 use Loopia\App\Constants\Items\ItemsConstants;
+use Loopia\App\ServiceModels\Client;
+use Loopia\App\ServiceModels\Memcache;
+use Loopia\App\ServiceModels\Redis;
 use Loopia\App\Services\HttpService;
 use Loopia\App\Services\MemcacheService;
 use Loopia\App\Services\RedisService;

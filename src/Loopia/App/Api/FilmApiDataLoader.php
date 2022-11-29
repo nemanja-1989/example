@@ -7,12 +7,11 @@
 namespace Loopia\App\Api;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Loopia\App\Api\ServiceModels\Client;
-use Loopia\App\Api\ServiceModels\Load;
-use Loopia\App\Api\ServiceModels\Memcache;
-use Loopia\App\Api\ServiceModels\Redis;
 use Loopia\App\Interface\ResponseInterface;
 use Loopia\App\Interface\ResponseSingleInterface;
+use Loopia\App\ServiceModels\Client;
+use Loopia\App\ServiceModels\Memcache;
+use Loopia\App\ServiceModels\Redis;
 use Loopia\App\Services\HttpService;
 use Loopia\App\Services\MemcacheService;
 use Loopia\App\Services\RedisService;
