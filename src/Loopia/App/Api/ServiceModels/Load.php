@@ -43,10 +43,10 @@ class Load
 
     public function loadData(): ArrayCollection|string
     {
-        if ($this->redis->getCache($this->redisService, ItemsConstants::ITEMS) !== null) {
-            $data = $this->redis->getCache($this->redisService, ItemsConstants::ITEMS);
-        } else if ($this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS) !== "") {
-            $data = $this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS);
+        if ($this->redis->getCache($this->redisService, ItemsConstants::ITEMS_CACHE) !== null) {
+            $data = $this->redis->getCache($this->redisService, ItemsConstants::ITEMS_CACHE);
+        } else if ($this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS_CACHE) !== "") {
+            $data = $this->memcache->getCache($this->memcacheService, ItemsConstants::ITEMS_CACHE);
         } else {
             $data = $this->getItemsRequest();
         }
@@ -55,10 +55,10 @@ class Load
 
     public function loadItemData(int $id): ArrayCollection|string
     {
-        if ($this->redis->getCache($this->redisService, ItemsConstants::item($id)) !== null) {
-            $data = $this->redis->getCache($this->redisService, ItemsConstants::item($id));
-        } else if ($this->memcache->getCache($this->memcacheService, ItemsConstants::item($id)) !== "") {
-            $data = $this->memcache->getCache($this->memcacheService, ItemsConstants::item($id));
+        if ($this->redis->getCache($this->redisService, ItemsConstants::itemCache($id)) !== null) {
+            $data = $this->redis->getCache($this->redisService, ItemsConstants::itemCache($id));
+        } else if ($this->memcache->getCache($this->memcacheService, ItemsConstants::itemCache($id)) !== "") {
+            $data = $this->memcache->getCache($this->memcacheService, ItemsConstants::itemCache($id));
         } else {
             $data = $this->getSingleItemsRequest($id);
         }
@@ -67,12 +67,12 @@ class Load
 
     private function getItemsRequest(): string
     {
-        return $this->filmApiClient->send($this->filmApiClient->getRequest('items'), $this->httpService)->getBody()->getContents();
+        return $this->filmApiClient->send($this->filmApiClient->getRequest(ItemsConstants::ITEMS_URI), $this->httpService)->getBody()->getContents();
     }
 
     private function getSingleItemsRequest($id): string
     {
-        return $this->filmApiClient->send($this->filmApiClient->getRequest('items/' . $id), $this->httpService)->getBody()->getContents();
+        return $this->filmApiClient->send($this->filmApiClient->getRequest(ItemsConstants::itemUri($id)), $this->httpService)->getBody()->getContents();
     }
 
     public function publicItemsRequest(): string
