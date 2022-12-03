@@ -25,7 +25,7 @@ class ContainerModel {
         $this->container->set('Load', new Load(new Client, new RedisService, new Redis, new HttpService, new MemcacheService, new Memcache));
         $this->container->set('FilmApiDataMemcache', new FilmApiDataMemcache(new Load(new Client, new RedisService, new Redis, new HttpService, new MemcacheService, new Memcache), new MemcacheService, new Memcache));
         $this->container->set('FilmApiDataCache', new FilmApiDataCache(new Load(new Client, new RedisService, new Redis, new HttpService, new MemcacheService, new Memcache), new RedisService, new Redis));
-        $this->container->set('Schedule', new Schedule(new RedisService, new Redis, new MemcacheService, new Memcache));
+        $this->container->set('Schedule', new Schedule(new $this, new RedisService, new Redis, new MemcacheService, new Memcache));
         $this->container->compile(true);
         return $this->container;
     }

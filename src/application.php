@@ -33,7 +33,7 @@ $loader->load('routes.yaml');
 $containerBuilder->set('Load', new Load(new Client, new RedisService, new Redis, new HttpService, new MemcacheService, new Memcache));
 $containerBuilder->set('FilmApiDataMemcache', new FilmApiDataMemcache(new Load(new Client, new RedisService, new Redis, new HttpService, new MemcacheService, new Memcache), new MemcacheService, new Memcache));
 $containerBuilder->set('FilmApiDataCache', new FilmApiDataCache(new Load(new Client, new RedisService, new Redis, new HttpService, new MemcacheService, new Memcache), new RedisService, new Redis));
-$containerBuilder->set('Schedule', new Schedule(new RedisService, new Redis, new MemcacheService, new Memcache));
+$containerBuilder->set('Schedule', new Schedule(new ContainerModel, new RedisService, new Redis, new MemcacheService, new Memcache));
 
 $containerBuilder->compile(true);
 return $containerBuilder;

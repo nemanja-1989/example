@@ -7,22 +7,19 @@
 namespace Loopia\App\Api;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Loopia\App\Containers\ContainerModel;
 use Loopia\App\Interface\ResponseInterface;
 use Loopia\App\Interface\ResponseSingleInterface;
 
 class FilmApiDataLoader implements ResponseInterface, ResponseSingleInterface
 {
-
-    public function __construct() {
-        $this->container = require_once dirname(__DIR__) . '/../../application.php';
-    }
-
     /**
      * @return Load
      */
     private function getLoadClass(): Load
     {
-        return $this->container->get('Load');
+        $container = new ContainerModel();
+        return $container->build()->get('Load');
     }
 
     /**
