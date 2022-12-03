@@ -2,6 +2,10 @@
 
 namespace Loopia\App\Console;
 
+// $container = require_once dirname(__DIR__) . '/../../application.php';
+// var_dump($container);
+// exit;
+
 use Loopia\App\Api\FilmApiDataCache;
 use Loopia\App\Api\FilmApiDataMemcache;
 use Loopia\App\Api\Load;
@@ -11,17 +15,18 @@ use Loopia\App\ServiceModels\Redis;
 use Loopia\App\Services\HttpService;
 use Loopia\App\Services\MemcacheService;
 use Loopia\App\Services\RedisService;
+use Loopia\App\Containers\ContainerModel;
 
 class ScheduleDependency
 {
-
     /**
      * @return FilmApiDataCache[]
      */
     private function dependencyClassesForScheduleRedis(): array
     {
+        $container = new ContainerModel();
         return [
-            new FilmApiDataCache(new Load(new Client, new RedisService, new Redis, new HttpService, new MemcacheService, new Memcache), new RedisService, new Redis),
+            $container->build()->get('FilmApiDataCache'),
         ];
     }
 
@@ -30,8 +35,9 @@ class ScheduleDependency
      */
     private function dependencyClassesForScheduleMemcache(): array
     {
+        $container = new ContainerModel();
         return [
-            new FilmApiDataMemcache(new Load(new Client, new RedisService, new Redis, new HttpService, new MemcacheService, new Memcache), new MemcacheService, new Memcache),
+            $container->build()->get('FilmApiDataMemcache'),
         ];
     }
 

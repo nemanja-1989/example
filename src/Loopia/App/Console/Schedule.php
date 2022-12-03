@@ -3,17 +3,20 @@
 namespace Loopia\App\Console;
 
 use Loopia\App\Constants\Items\ItemsConstants;
+use Loopia\App\Containers\ScheduleContainer;
 use Loopia\App\Interface\MemcacheDependency;
 use Loopia\App\Interface\RedisDependency;
 use Loopia\App\ServiceModels\Memcache;
 use Loopia\App\ServiceModels\Redis;
 use Loopia\App\Services\MemcacheService;
 use Loopia\App\Services\RedisService;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class Schedule extends ScheduleDependency
 {
 
     /**
+     * @param ContainerModel $model;
      * @param RedisService $redisService
      * @param Redis $redis
      * @param MemcacheService $memcacheService
@@ -24,7 +27,7 @@ final class Schedule extends ScheduleDependency
         protected RedisService $redisService,
         protected Redis $redis,
         protected MemcacheService $memcacheService,
-        protected Memcache $memcache
+        protected Memcache $memcache,
     )
     {
         $this->redisService = $redisService;
