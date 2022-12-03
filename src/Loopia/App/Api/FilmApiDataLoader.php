@@ -13,13 +13,16 @@ use Loopia\App\Interface\ResponseSingleInterface;
 
 class FilmApiDataLoader implements ResponseInterface, ResponseSingleInterface
 {
+
+    public function __construct(protected ContainerModel $container) {
+        $this->container = $container;
+    }
     /**
      * @return Load
      */
     private function getLoadClass(): Load
     {
-        $container = new ContainerModel();
-        return $container->build()->get('Load');
+        return $this->container->build()->get('Load');
     }
 
     /**

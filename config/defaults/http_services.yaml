@@ -6,6 +6,8 @@ services:
     Loopia\App\Core\HttpApplication:
         alias: application
 
+    Loopia\App\Containers\ContainerModel:
+
     routeparser:
         class: FastRoute\RouteParser\Std
 
