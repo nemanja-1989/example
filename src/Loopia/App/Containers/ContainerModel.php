@@ -29,5 +29,4 @@ class ContainerModel {
         $this->container->compile(true);
         return $this->container;
     }
-
 }
