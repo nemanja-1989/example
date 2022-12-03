@@ -18,8 +18,6 @@ use Loopia\App\Services\HttpService;
 
 class ContainerModel {
 
-    protected ContainerBuilder $container;
-
     public function build() {
         $this->container = new ContainerBuilder();
         $this->container->set('Load', new Load(new Client, new RedisService, new Redis, new HttpService, new MemcacheService, new Memcache));
